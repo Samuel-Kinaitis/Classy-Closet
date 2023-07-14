@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classy Closet</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="productStyle.css">
+    <link rel="stylesheet" href="treading.css">
+    <link rel="icon" type="image/png" href="Pictures/favicon.png">
+</head>
+<body>
+    <header id="header"></header>
+
+    <main>
+      <div class="Item__Container">
+        <div class="Item__Main">
+            <h2 id="ThisItem">Title</h2>
+          <div class="Item__Display">
+            <div class="Item__Image--wrap">
+              <img class="Item__Image" id="Item__Product__Image" alt="">
+            </div>
+            <div class="Item__Description">
+              <div class="product__Summary">
+                <p id="product__Summary">Summary part</p>
+              </div>
+              
+              <div id="Item__SizeInputControl" class="Item__SizeControl">
+
+              </div>
+              <div class="Item__AmountControl">
+                <p >Quantity</p>
+                <div>
+                  <button  onclick="ItemAmountRemove()" id="Item__Amount__Remove" class="Item__AmountControl__button">-</button>
+                  <p  id="Item__Amount">1</p>
+                  <button onclick="ItemAmountAdd()" id="Item__Amount__Add" class="Item__AmountControl__button">+</button>
+                </div>
+                
+                <p id="Item__Price">Price</p>
+              </div>
+              <div class="Item__BuyOptions">
+                <button onclick="getProductInfo('cart')" id="cartButton">Add to Cart</button>
+                <div id="NoteAlert">
+                  <p>Product Added To Cart Successfully!</p>
+                </div>
+                <button onclick="getProductInfo('buy')" id="buyButton">Buy Now</button> 
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="Item__TypeControls">
+          
+        </div>
+      </div>
+        
+
+        <!--Trending section-->
+        <div id="Treading__items--index" class="Treading__items"></div>
+    </main>
+
+    <footer id="footer"></footer>
+
+<script type="application/javascript" src="app.js"></script>
+</body>
+</html>

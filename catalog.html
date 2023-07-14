@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classy Closet</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="catalogStyle.css">
+    <link rel="icon" type="image/png" href="Pictures/favicon.png">
+</head>
+<body>
+    <header id="header"></header>
+
+    <main>
+      <div class="categories">
+        <h2 id="categoryHeader">test</h2>
+        <div class="categories__type">
+          <button onclick="categorySort('All')">All</button>
+          <button onclick="categorySort('Shirts')">Shirts</button>
+          <button onclick="categorySort('Pants')">Pants</button>
+          <button onclick="categorySort('Dresses')">Dresses</button>
+          <button onclick="categorySort('Ties')">Ties</button>
+          <button onclick="categorySort('Beltes')">Beltes</button>
+          <button onclick="categorySort('Shoes')">Shoes</button>
+          <button onclick="categorySort('Sockes')">Sockes</button>
+        </div>
+        <div class="catergory__search">
+          <form autocomplete="off" onsubmit="return false;">
+            <input id="searchTextBox" type="text" oninput="searchfor()" placeholder="Search by Name">
+          </form>
+        </div>
+      </div>
+      <div class="Item__Container--wrap" id="Item__Container">
+
+      </div>
+    </main>
+
+    <footer id="footer"></footer>
+
+<script type="application/javascript" src="app.js"></script>
+</body>
+</html>

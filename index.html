@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classy Closet</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="indexStyle.css">
+    <link rel="stylesheet" href="treading.css">
+    <link rel="icon" type="image/png" href="Pictures/favicon.png">
+</head>
+<body>
+    <header id="header">
+        
+    </header>
+
+    <main>
+        <!--Section headings-->
+        <div class="section">
+            <div class="section__rowLong">
+                <div onclick="categorySort('Shirts')" id="section1">
+                    <img class="section__rowImg" src="Pictures/shirtrack.jpg" alt="">
+                    <p class="section__rowText">Shirts</p>
+                </div>
+        
+                <div onclick="categorySort('Pants')" id="section2">
+                    <img class="section__rowImg" src="Pictures/pantsrack.jpg" alt="">
+                    <p class="section__rowText">Pants</p>
+                </div>
+            </div>
+            <div class="section__rowBlock">
+                <div onclick="categorySort('Shoes')"  id="section3">
+                    <img src="Pictures/shoeDisply.jpg" alt="">
+                    <p class="section__rowText">Shoes</p>
+                </div>
+                <div onclick="categorySort('Sockes')" id="section4">
+                    <img src="Pictures/socksDisply.jpg" alt="">
+                    <p class="section__rowText">Socks</p>
+                </div>
+            </div>
+        </div>
+<!--Featured items-->
+        <h2 id="feature__itemsHeader">Featured Items</h2>
+        <div id="feature__items">
+
+        </div>
+<!--Promotion-->
+        <div class="promote">
+            <div class="promote__text">
+                <h2>Elevate Your Style, Inside and Out!</h2>
+                <p>Empowering Individuals with Timeless Elegance and Confidence.</p>
+                <a href="catalog.html"><button>Shop</button></a>
+            </div>
+            <div class="promote__img">
+                <img src="Pictures/image (4).png" alt="LOGO">
+            </div>
+        </div>
+<!--Treading items-->
+<div id="Treading__items--index" class="Treading__items"></div>
+
+    </main>
+
+    <footer id="footer">
+        
+    </footer>
+
+<script type="application/javascript" src="app.js"></script>
+</body>
+</html>

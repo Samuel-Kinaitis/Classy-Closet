@@ -1,0 +1,260 @@
+/*section*/
+.section{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    justify-self: center;
+    margin: 80px auto;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    padding: 0 50px;
+}
+.section__rowLong{
+    padding-right: 20px;
+    
+    
+}
+.section__rowLong div{
+    cursor: pointer;
+    border: 1px solid black;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 55%);
+    height: 300px;
+    width: 100%;
+    position: relative;
+}
+
+
+#section1{
+    text-align: center;
+    background-color: white;
+    overflow: hidden;
+    
+}
+.section__rowImg{
+    height: 100%;
+    width: 100%;
+}
+
+.section__rowText{
+    position: absolute;
+    color: white    ;
+    font-size: 2rem ;
+    font-weight: bold;
+    left: 15px;
+    bottom: 10px; 
+    text-shadow: 
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+}
+#section2{
+    margin-top: 20px;
+}
+.section__rowBlock{
+    cursor: pointer;
+    display: grid;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+.section__rowBlock div{
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 55%);
+    border: 1px solid black;
+    height: 300px;
+    width: 100%;
+    position: relative;
+
+}
+
+#section3{
+    text-align: center;
+    background-color: white;
+}
+#section3 img{
+    height: 100%;
+    width: 100%;
+}
+
+#section4{
+    text-align: center;
+    margin-top: 20px;
+    background-color: white;
+}
+
+#section4 img{
+    width: 100%;
+    height: 100%;
+}
+
+.section__rowLong div{
+    transition: box-shadow  350ms;
+}
+
+.section__rowLong div:hover{
+    box-shadow: 5px 5px 5px hsl(0, 0%, 55%);
+}
+
+.section__rowLong div img{
+    transition: filter  350ms;
+}
+
+.section__rowLong div img:hover{
+    filter: brightness(80%)
+}
+
+.section__rowBlock div{
+    transition: box-shadow  350ms;
+}
+
+.section__rowBlock div:hover{
+    box-shadow: 5px 5px 5px hsl(0, 0%, 55%);
+}
+
+.section__rowBlock div img{
+    transition: filter  350ms;
+}
+
+.section__rowBlock div img:hover{
+    filter: brightness(80%)
+
+}
+
+
+/*feature*/
+
+
+#feature__itemsHeader{
+    text-align: center;
+    margin: 25px 0;
+    font-size: 2rem;
+    text-shadow: 3px 3px 5px hsl(0, 0%, 55%);
+}
+
+#feature__items{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.FeatureItem__Container{
+    cursor: pointer;
+    text-align: center;
+    background-color: white;
+    border: 1px solid hsl(0, 0%, 0%);
+    padding: 10px;
+    margin: 5px;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 55%);
+    border-radius: 25px;
+    transition: border,box-shadow  250ms;
+}
+
+.FeatureItem__img{
+    height: 35vh;
+    max-width: 100%;
+}
+
+.FeatureItem__Container:hover{
+    border: 2px solid hsl(0, 0%, 20%);
+    box-shadow: 5px 5px 5px hsl(0, 0%, 55%);
+}
+
+/*Screen sizes*/
+@media screen and (max-width: 1750px){
+    #feature__items{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    #feature__items{
+        grid-template-columns: 1fr 1fr;
+    }
+    
+
+}
+
+@media screen and (max-width: 840px) {
+    #feature__items{
+        grid-template-columns: 1fr;
+    }
+    .section{
+        grid-template-columns: 1fr;
+    }
+    .section__rowLong{
+        padding-right: 0;
+    }
+    #section3{
+        margin-top: 20px;
+    }
+}
+
+/*promote*/
+.promote{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-self: center;
+    margin: 80px auto;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    padding: 0 50px;
+}
+
+.promote__text{
+    margin: auto;
+    text-align: center;
+    padding: 50px;
+}
+.promote__text p{
+    margin: 15px 0;
+}
+.promote__img{
+    margin: 25px 0;
+}
+.promote__img img{
+    max-height: 250px;
+}
+.promote__text button{
+    padding: 10px 50px;
+    font-size: 1.25rem;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 55%);
+    border: 0;
+    border-radius: 5px;
+}
+.promote__text button:hover{
+    background-color: hsl(0, 0%, 90%);
+    box-shadow: 5px 5px 5px hsl(0, 0%, 55%);
+}
+
+@media screen and (max-width: 840px) {
+    .promote{
+        grid-template-columns: 1fr;
+        padding: 0px;
+    }
+    .promote__img{
+        text-align: center;
+    }
+    .promote__text{
+        padding: 0px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .section div div{
+        max-height: 50vw;
+      }
+    .section__rowText{
+        font-size: 1rem;
+    }
+    .section{
+        margin: 9 auto;
+        padding: 0;
+    }
+  } 
