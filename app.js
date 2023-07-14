@@ -29,7 +29,7 @@ if(catalogSettings == null){
   localStorage.setItem("catalogSettings", "All");
 }
 
-//All Items -- Listed order only changes how items are displayed in catalog
+//All Items -- Listed order only changes how items are displayed in catalog -- If access to DB could put and set from there to array?
 const StoredItems= [
   ["0 - Item Location/Product ID/Key","1 - Name", "2 - Tag", "3 - Price", " 4 - Picture", "5- Summary Section"], //required for operation as of now (also looks nice as a guide), if you want to remove, amend the for loop in the catalog builder. love u, SK 
   ["1","Regular Straight-Fit Jeans", "Pants", "$23.80", "Pictures/Items/item1.jpg", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas perspiciatis suscipit ipsa, ad tempora omnis! Quaerat maxime ratione eligendi voluptas hic omnis quam consequuntur. Laudantium enim libero maxime nisi velit."],
@@ -276,7 +276,7 @@ function ItemAmountRemove(){
 }
 
 function totalItemPrice(){
-  let priceItemRounder = Math.round((ItemAmount * StoredItems[item_value][3].substr(1)) * 100) / 100;
+  let priceItemRounder = Math.round((ItemAmount * StoredItems[item_value][3].substring(1)) * 100) / 100;
   
   if(priceItemRounder.toString().slice(-3, -2) != "."){
     if(priceItemRounder.toString().slice(-2,-1) == "."){
@@ -287,6 +287,8 @@ function totalItemPrice(){
   }
   return priceItemRounder;
 } 
+
+
 function updateItemAmountCounter(){
   document.getElementById("Item__Amount").innerText = ItemAmount;
   document.getElementById("Item__Price").innerText = ("$"+ totalItemPrice());
@@ -698,7 +700,16 @@ function cartPageBuilder(){
         ItemAmount =  localShoppingCart[i][1]
         item_value =  localShoppingCart[i][0]
         shoppingItemboxCost.innerText =("Price $" + totalItemPrice());
-        totalCartPrice = totalCartPrice + totalItemPrice();
+
+        //rats - crazy
+        totalCartPrice = ((Math.round((parseFloat(totalItemPrice() + parseFloat(totalCartPrice))) * 100) / 100));
+        if(totalCartPrice.toString().slice(-3, -2) != "."){
+          if(totalCartPrice.toString().slice(-2,-1) == "."){
+            totalCartPrice = totalCartPrice.toString().concat("0");
+          } else{
+            totalCartPrice = totalCartPrice.toString().concat(".00");
+          }
+        }
         document.getElementById("shoppingItemboxInfo"+i).appendChild(shoppingItemboxCost);
 
         //h3 (size)
@@ -711,12 +722,18 @@ function cartPageBuilder(){
           document.getElementById("shoppingItemboxSize"+i).style.display='none';
         }
         
+        document.getElementById("CheckoutButton").disabled = false;
         document.getElementById("AllInTotalPrice").innerHTML = "Total $" + totalCartPrice;
   }
-
-  if (localShoppingCart.length <= 1){
-    console.log("Items added to the cart will display here")
+  if (totalCartPrice == 0){
+    document.getElementById("AllInTotalPrice").innerHTML = "No Items in Cart";
+    document.getElementById("CheckoutButton").disabled = true;
   }
+
+  // Forgot why this was importent again, going to keep until something breaks
+  // if (localShoppingCart.length <= 1){
+  //   console.log("Items added to the cart will display here")
+  // }
   
 }
 
@@ -762,6 +779,28 @@ function removeItemFromCart(RemovedItemID, RemovedItemAmount, RemovedItemSize){
       
     if (localShoppingCart[j][0] == RemovedItemID && localShoppingCart[j][1] == RemovedItemAmount && RemovedItemID && localShoppingCart[j][2] == RemovedItemSize){
     //Does nothing, easier to read
+
+    for (let i = j + 1; i < localShoppingCart.length; i++){
+      let tempNewLocalShoppingCartFished =
+      localShoppingCart[i];
+      if(newLocalShoppingCart.length < 1){
+        localStorage.setItem("shoppingCart", tempNewLocalShoppingCartFished);
+      
+      } else {
+        localStorage.setItem("shoppingCart", newLocalShoppingCart + "/" + tempNewLocalShoppingCartFished);
+      }
+      newLocalShoppingCart = localStorage.getItem("shoppingCart");
+      shoppingCart = localStorage.getItem("shoppingCart");  
+
+    }
+    if (localShoppingCart.length > 2){
+      localStorage.setItem("shoppingCart", "/" + shoppingCart);
+      newLocalShoppingCart = localStorage.getItem("shoppingCart");
+      shoppingCart = localStorage.getItem("shoppingCart");
+    }
+    document.location.href = cartLink;
+
+    return 
     } else {
       if(newLocalShoppingCart.length < 1){
         localStorage.setItem("shoppingCart", tempNewLocalShoppingCart);
