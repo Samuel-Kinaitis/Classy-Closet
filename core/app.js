@@ -224,7 +224,7 @@ function footerBuilder(){
                 <h2>About Us</h2>
                   <a href="/Classy-Closet/support-pages/how-it-works/how-it-works.html">How it works</a>
                   <a href="">Testimonials</a>
-                  <a href="/Classy-Closet/support-pages/tos/terms-of-service.html">Terms of Servi e</a>
+                  <a href="/Classy-Closet/support-pages/tos/terms-of-service.html">Terms of Service</a>
               </div>
               <div class="footer__link--items">
                 <h2>Contact Us</h2>
