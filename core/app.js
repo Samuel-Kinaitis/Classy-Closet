@@ -151,7 +151,7 @@ function headerBuilder(){
   const headerBuilderStructure = `
   <nav class="navbar">
     <div class="navbar__container">
-      <a href="home.html" id="navbar__logo"><img id="navbar__img" src="/Classy-Closet/Pictures/image (5).png">Classy Closet</a>
+      <a href="/Classy-Closet/main-pages/home/home.html" id="navbar__logo"><img id="navbar__img" src="/Classy-Closet/Pictures/image (5).png">Classy Closet</a>
       <div class="navbar__toggle" id="mobile-menu">
         <span class="bar"></span> 
         <span class="bar"></span>
@@ -224,7 +224,7 @@ function footerBuilder(){
                 <h2>About Us</h2>
                   <a href="/Classy-Closet/support-pages/how-it-works.html">How it works</a>
                   <a href="">Testimonials</a>
-                  <a href="/Classy-Closet/support-pages/terms-of-service.html">Terms of Service</a>
+                  <a href="/Classy-Closet/support-pages/terms-of-service.html">Terms of Servi e</a>
               </div>
               <div class="footer__link--items">
                 <h2>Contact Us</h2>
