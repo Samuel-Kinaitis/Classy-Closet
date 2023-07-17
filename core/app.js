@@ -222,15 +222,15 @@ function footerBuilder(){
             <div class="footer__link--wrapper">
               <div class="footer__link--items">
                 <h2>About Us</h2>
-                  <a href="/Classy-Closet/support-pages/how-it-works.html">How it works</a>
+                  <a href="/Classy-Closet/support-pages/how-it-works/how-it-works.html">How it works</a>
                   <a href="">Testimonials</a>
-                  <a href="/Classy-Closet/support-pages/terms-of-service.html">Terms of Servi e</a>
+                  <a href="/Classy-Closet/support-pages/tos/terms-of-service.html">Terms of Servi e</a>
               </div>
               <div class="footer__link--items">
                 <h2>Contact Us</h2>
-                <a href="/Classy-Closet/support-pages/contact.html">Contact</a> 
+                <a href="/Classy-Closet/support-pages/contact/contact.html">Contact</a> 
                 <a href="">Support</a>
-                <a href="/Classy-Closet/support-pages/careers.html">Careers</a>
+                <a href="/Classy-Closet/support-pages/careers/careers.html">Careers</a>
               </div>
               <div class="footer__link--items">
                 <h2>Social Media</h2>
@@ -249,50 +249,6 @@ function footerBuilder(){
                   <p class="website__rights">Designed and Owned by Samuel Kinaitis</p>
                   <p id="website__copyright" class="website__rights">© Classy Closet 2023. All rights reserved</p>
               </div>
-              <!--
-              <div class="social__icons">
-                <a
-                  class="social__icon--link"
-                  href=""
-                  target="_blank"
-                  aria-label="Facebook"
-                >
-                  <i class="fab fa-facebook"></i>
-                </a>
-                <a
-                  class="social__icon--link"
-                  href=""
-                  target="_blank"
-                  aria-label="Instagram"
-                >
-                  <i class="fab fa-instagram"></i>
-                </a>
-                <a
-                  class="social__icon--link"
-                  href=""
-                  target="_blank"
-                  aria-label="Youtube"
-                >
-                  <i class="fab fa-youtube"></i>
-                </a>
-                <a
-                  class="social__icon--link"
-                  href=""
-                  target="_blank"
-                  aria-label="Twitter"
-                >
-                  <i class="fab fa-twitter"></i>
-                </a>
-                <a
-                  class="social__icon--link"
-                  href=""
-                  target="_blank"
-                  aria-label="LinkedIn"
-                >
-                  <i class="fab fa-linkedin"></i>
-                </a>
-              </div>
-              -->
             </div>
           </section>
         </div>
