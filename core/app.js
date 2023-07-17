@@ -222,15 +222,15 @@ function footerBuilder(){
             <div class="footer__link--wrapper">
               <div class="footer__link--items">
                 <h2>About Us</h2>
-                  <a href="Classy-Closet/support-pages/how-it-works.html">How it works</a>
+                  <a href="/Classy-Closet/support-pages/how-it-works.html">How it works</a>
                   <a href="">Testimonials</a>
-                  <a href="Classy-Closet/support-pages/terms-of-service.html">Terms of Service</a>
+                  <a href="/Classy-Closet/support-pages/terms-of-service.html">Terms of Service</a>
               </div>
               <div class="footer__link--items">
                 <h2>Contact Us</h2>
-                <a href="Classy-Closet/support-pages/contact.html">Contact</a> 
+                <a href="/Classy-Closet/support-pages/contact.html">Contact</a> 
                 <a href="">Support</a>
-                <a href="Classy-Closet/support-pages/careers.html">Careers</a>
+                <a href="/Classy-Closet/support-pages/careers.html">Careers</a>
               </div>
               <div class="footer__link--items">
                 <h2>Social Media</h2>
