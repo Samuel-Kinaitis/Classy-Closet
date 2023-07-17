@@ -34,21 +34,21 @@ if(catalogSettings == null){
 //All Items -- Listed order only changes how items are displayed in catalog -- If access to DB could put and set from there to array?
 const StoredItems= [
   ["0 - Item Location/Product ID/Key","1 - Name", "2 - Tag", "3 - Price", " 4 - Picture", "5- Summary Section"], //required for operation as of now (also looks nice as a guide), if you want to remove, amend the for loop in the catalog builder. love u, SK 
-  ["1","Regular Straight-Fit Jeans", "Pants", "$23.80", "/Pictures/Items/item1.jpg", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas perspiciatis suscipit ipsa, ad tempora omnis! Quaerat maxime ratione eligendi voluptas hic omnis quam consequuntur. Laudantium enim libero maxime nisi velit."],
-  ["2","Forest Green Cotton Crew Neck Hiking T-Shirt", "Shirts", "$15.00", "/Pictures/Items/item2.jpg", "Summary Section"],
-  ["3","Short Sleeve Solid Blue Skater Casual Twirly Dress with Pockets", "Dresses", "$22.97", "/Pictures/Items/item3.jpg", "Summary Section"],
-  ["4","Umo Lorenzo Clip on Tie Solid Neck Tie", "Ties", "$10.99", "/Pictures/Items/item4.jpg", "Summary Section"],
-  ["5","XUECHEN Striped Tie", "Ties", "$7.99", "/Pictures/Items/item5.jpg", "Summary Section"],
-  ["6","AWAYTR Bow tie", "Ties", "$7.99", "/Pictures/Items/item6.jpg", "Summary Section"],
-  ["7","CHAOREN Ratchet Belt", "Beltes", "$17.99", "/Pictures/Items/item7.jpg", "Summary Section"],
-  ["8","Columbia Unisex-Adult Military Web Belt", "Beltes", "$11.98", "/Pictures/Items/item8.jpg", "Summary Section"],
-  ["9","BULLIANT Leather Woven Braided", "Beltes", "$29.99", "/Pictures/Items/item9.jpg", "Summary Section"],
-  ["10","Naturalizer Women's Anna Pump", "Shoes", "$119.99", "/Pictures/Items/item10.jpg", "Yes, the shoe does come as a pair"],
-  ["11","Giniros Running Shoes", "Shoes", "$36.99", "/Pictures/Items/item11.jpg", "Yes, the shoe does come as a pair"],
-  ["12","ASICS Gel-Venture 8 Running Shoes", "Shoes", "$54.95", "/Pictures/Items/item12.jpg", "Yes, the shoe does come as a pair"],
-  ["14","Crew Socks 12-Pack Black", "Sockes", "$24.99", "/Pictures/Items/item14.jpg", "Summary Section"],
-  ["13","Rockport Eureka Walking Shoe", "Shoes", "$69.95", "/Pictures/Items/item13.jpg", "Yes, the shoe does come as a pair"],
-  ["15","Crew Socks 12-Pack White", "Sockes", "$24.99", "/Pictures/Items/item15.jpg", "Summary Section"]
+  ["1","Regular Straight-Fit Jeans", "Pants", "$23.80", "/Classy-Closet/Pictures/Items/item1.jpg", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas perspiciatis suscipit ipsa, ad tempora omnis! Quaerat maxime ratione eligendi voluptas hic omnis quam consequuntur. Laudantium enim libero maxime nisi velit."],
+  ["2","Forest Green Cotton Crew Neck Hiking T-Shirt", "Shirts", "$15.00", "/Classy-Closet/Pictures/Items/item2.jpg", "Summary Section"],
+  ["3","Short Sleeve Solid Blue Skater Casual Twirly Dress with Pockets", "Dresses", "$22.97", "/Classy-Closet/Pictures/Items/item3.jpg", "Summary Section"],
+  ["4","Umo Lorenzo Clip on Tie Solid Neck Tie", "Ties", "$10.99", "/Classy-Closet/Pictures/Items/item4.jpg", "Summary Section"],
+  ["5","XUECHEN Striped Tie", "Ties", "$7.99", "/Classy-Closet/Pictures/Items/item5.jpg", "Summary Section"],
+  ["6","AWAYTR Bow tie", "Ties", "$7.99", "/Classy-Closet/Pictures/Items/item6.jpg", "Summary Section"],
+  ["7","CHAOREN Ratchet Belt", "Beltes", "$17.99", "/Classy-Closet/Pictures/Items/item7.jpg", "Summary Section"],
+  ["8","Columbia Unisex-Adult Military Web Belt", "Beltes", "$11.98", "/Classy-Closet/Pictures/Items/item8.jpg", "Summary Section"],
+  ["9","BULLIANT Leather Woven Braided", "Beltes", "$29.99", "/Classy-Closet/Pictures/Items/item9.jpg", "Summary Section"],
+  ["10","Naturalizer Women's Anna Pump", "Shoes", "$119.99", "/Classy-Closet/Pictures/Items/item10.jpg", "Yes, the shoe does come as a pair"],
+  ["11","Giniros Running Shoes", "Shoes", "$36.99", "/Classy-Closet/Pictures/Items/item11.jpg", "Yes, the shoe does come as a pair"],
+  ["12","ASICS Gel-Venture 8 Running Shoes", "Shoes", "$54.95", "/Classy-Closet/Pictures/Items/item12.jpg", "Yes, the shoe does come as a pair"],
+  ["14","Crew Socks 12-Pack Black", "Sockes", "$24.99", "/Classy-Closet/Pictures/Items/item14.jpg", "Summary Section"],
+  ["13","Rockport Eureka Walking Shoe", "Shoes", "$69.95", "/Classy-Closet/Pictures/Items/item13.jpg", "Yes, the shoe does come as a pair"],
+  ["15","Crew Socks 12-Pack White", "Sockes", "$24.99", "/Classy-Closet/Pictures/Items/item15.jpg", "Summary Section"]
 ]; 
 
 //Tread Items - Input by Item Location/Product ID/Key/ Tag [0] - order inputted will display outputted
@@ -151,7 +151,7 @@ function headerBuilder(){
   const headerBuilderStructure = `
   <nav class="navbar">
     <div class="navbar__container">
-      <a href="index.html" id="navbar__logo"><img id="navbar__img" src="/Pictures/image (5).png">Classy Closet</a>
+      <a href="home.html" id="navbar__logo"><img id="navbar__img" src="/Classy-Closet/Pictures/image (5).png">Classy Closet</a>
       <div class="navbar__toggle" id="mobile-menu">
         <span class="bar"></span> 
         <span class="bar"></span>
@@ -185,16 +185,16 @@ menu.addEventListener('click', function() {
 
 //Link path controller
 const indexLink = document.getElementById('indexLink');
-indexLink.href = "/main-pages/home/index.html"
+indexLink.href = "/Classy-Closet/main-pages/home/home.html"
 
 const catalogLink = document.getElementById('catalogLink');
-catalogLink.href = "/main-pages/catalog/catalog.html"
+catalogLink.href = "/Classy-Closet/main-pages/catalog/catalog.html"
 
 const productLink = document.getElementById('productLink');
-productLink.href = "/main-pages/product/product.html"
+productLink.href = "/Classy-Closet/main-pages/product/product.html"
 
 const cartLink = document.getElementById('cartLink');
-cartLink.href = "/main-pages/cart/cart.html"
+cartLink.href = "/Classy-Closet/main-pages/cart/cart.html"
 
   //highlight current page in navbar
   if(document.URL.includes(catalogLink)){
@@ -222,15 +222,15 @@ function footerBuilder(){
             <div class="footer__link--wrapper">
               <div class="footer__link--items">
                 <h2>About Us</h2>
-                  <a href="/support-pages/how-it-works.html">How it works</a>
+                  <a href="Classy-Closet/support-pages/how-it-works.html">How it works</a>
                   <a href="">Testimonials</a>
-                  <a href="/support-pages/terms-of-service.html">Terms of Service</a>
+                  <a href="Classy-Closet/support-pages/terms-of-service.html">Terms of Service</a>
               </div>
               <div class="footer__link--items">
                 <h2>Contact Us</h2>
-                <a href="/support-pages/contact.html">Contact</a> 
+                <a href="Classy-Closet/support-pages/contact.html">Contact</a> 
                 <a href="">Support</a>
-                <a href="/support-pages/careers.html">Careers</a>
+                <a href="Classy-Closet/support-pages/careers.html">Careers</a>
               </div>
               <div class="footer__link--items">
                 <h2>Social Media</h2>
