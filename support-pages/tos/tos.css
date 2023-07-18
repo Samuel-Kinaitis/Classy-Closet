@@ -4,7 +4,7 @@
 main {
   margin: 20px;  
   margin: 20px auto;
-  max-width: 1500px;
+  max-width: 1000px;
 }
 
 
@@ -36,6 +36,10 @@ p {
 ul{
     margin: 20px 0;
     padding-left: 50px;
+}
+
+li{
+    line-height: 1.5;   
 }
 
 #falseNoticeMessage{

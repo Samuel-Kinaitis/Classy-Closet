@@ -51,6 +51,7 @@ const StoredItems= [
   ["15","Crew Socks 12-Pack White", "Sockes", "$24.99", "/Classy-Closet/Pictures/Items/item15.jpg", "Summary Section"]
 ]; 
 
+
 //Tread Items - Input by Item Location/Product ID/Key/ Tag [0] - order inputted will display outputted
 const NominatedtreadingItems = [2,3,5,15,13,7,9,12,14];
 
@@ -203,7 +204,7 @@ cartLink.href = "/Classy-Closet/main-pages/cart/cart.html"
     document.getElementById("productLink").className = "navbar__links__active"
   } else if(document.URL.includes(cartLink)){
     document.getElementById("cartLink").className = "button__active"
-  } else if(document.URL.includes(indexLink) || document.URL.includes("")){
+  } else if(document.URL.includes(indexLink)){
     document.getElementById("indexLink").className = "navbar__links__active"
   }
 
