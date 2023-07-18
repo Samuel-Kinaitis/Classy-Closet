@@ -1,0 +1,51 @@
+
+
+
+main {
+  margin: 20px;  
+  margin: 20px auto;
+  max-width: 1500px;
+}
+
+
+h1{
+    text-align: center;
+    margin: 25px;
+}
+
+h2 {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+h3 {
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+
+hr{
+    margin: 20px 0;
+}
+
+p {
+    line-height: 1.5;   
+}
+
+ul{
+    margin: 20px 0;
+    padding-left: 50px;
+}
+
+#falseNoticeMessage{
+    text-align: center;
+    line-height: 2;
+    font-size: 1.15rem;   
+}
+
+@media screen and (max-width: 960px){
+    main {
+        margin: 10px;  
+      }
+}
