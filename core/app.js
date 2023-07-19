@@ -10,6 +10,9 @@ var cartNewItemsCount = localStorage.getItem("cartNewItemsCount");
 const catalogPageSize = 12;
 var ItemAmount = 1;
 
+var StoredFeatureItems = [];
+var StoredTrendItems = [];
+
 //needs removable after testing
 // localStorage.removeItem("shoppingCart");
 // const thingus = ["5","1","$7.99","empty"];
@@ -31,35 +34,154 @@ if(catalogSettings == null){
   localStorage.setItem("catalogSettings", "All");
 }
 
+
 //All Items -- Listed order only changes how items are displayed in catalog -- If access to DB could put and set from there to array?
-const StoredItems= [
-  ["0 - Item Location/Product ID/Key","1 - Name", "2 - Tag", "3 - Price", " 4 - Picture", "5- Summary Section"], //required for operation as of now (also looks nice as a guide), if you want to remove, amend the for loop in the catalog builder. love u, SK 
-  ["1","Regular Straight-Fit Jeans", "Pants", "$23.80", "/Classy-Closet/Pictures/Items/item1.jpg", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas perspiciatis suscipit ipsa, ad tempora omnis! Quaerat maxime ratione eligendi voluptas hic omnis quam consequuntur. Laudantium enim libero maxime nisi velit."],
-  ["2","Forest Green Cotton Crew Neck Hiking T-Shirt", "Shirts", "$15.00", "/Classy-Closet/Pictures/Items/item2.jpg", "Summary Section"],
-  ["3","Short Sleeve Solid Blue Skater Casual Twirly Dress with Pockets", "Dresses", "$22.97", "/Classy-Closet/Pictures/Items/item3.jpg", "Summary Section"],
-  ["4","Umo Lorenzo Clip on Tie Solid Neck Tie", "Ties", "$10.99", "/Classy-Closet/Pictures/Items/item4.jpg", "Summary Section"],
-  ["5","XUECHEN Striped Tie", "Ties", "$7.99", "/Classy-Closet/Pictures/Items/item5.jpg", "Summary Section"],
-  ["6","AWAYTR Bow tie", "Ties", "$7.99", "/Classy-Closet/Pictures/Items/item6.jpg", "Summary Section"],
-  ["7","CHAOREN Ratchet Belt", "Beltes", "$17.99", "/Classy-Closet/Pictures/Items/item7.jpg", "Summary Section"],
-  ["8","Columbia Unisex-Adult Military Web Belt", "Beltes", "$11.98", "/Classy-Closet/Pictures/Items/item8.jpg", "Summary Section"],
-  ["9","BULLIANT Leather Woven Braided", "Beltes", "$29.99", "/Classy-Closet/Pictures/Items/item9.jpg", "Summary Section"],
-  ["10","Naturalizer Women's Anna Pump", "Shoes", "$119.99", "/Classy-Closet/Pictures/Items/item10.jpg", "Yes, the shoe does come as a pair"],
-  ["11","Giniros Running Shoes", "Shoes", "$36.99", "/Classy-Closet/Pictures/Items/item11.jpg", "Yes, the shoe does come as a pair"],
-  ["12","ASICS Gel-Venture 8 Running Shoes", "Shoes", "$54.95", "/Classy-Closet/Pictures/Items/item12.jpg", "Yes, the shoe does come as a pair"],
-  ["14","Crew Socks 12-Pack Black", "Sockes", "$24.99", "/Classy-Closet/Pictures/Items/item14.jpg", "Summary Section"],
-  ["13","Rockport Eureka Walking Shoe", "Shoes", "$69.95", "/Classy-Closet/Pictures/Items/item13.jpg", "Yes, the shoe does come as a pair"],
-  ["15","Crew Socks 12-Pack White", "Sockes", "$24.99", "/Classy-Closet/Pictures/Items/item15.jpg", "Summary Section"]
-]; 
+var StoredItems= []; 
+
+//Indexed Database for stored Items
+
+var array = [];
+var DBsize;
+
+var restoreDB = true;
+
+const indexedDB = 
+window.indexedDB ||
+window.mozIndexedDB ||
+window.webkitIndexedDB ||
+window.msIndexedDB ||
+window.shimIndexDB;
+
+const request = indexedDB.open("CartDatabase", 1);
 
 
-//Tread Items - Input by Item Location/Product ID/Key/ Tag [0] - order inputted will display outputted
-const NominatedtreadingItems = [2,3,5,15,13,7,9,12,14];
+request.onerror = function (event) {
+    console.error("An error ocurred with IndexedDB");
+    console.error(event);
+};
+
+request.onupgradeneeded = function () {
+    const db = request.result;
+    const store = db.createObjectStore("items", { keyPath: "id" });
+
+};
+
+
+
+request.onsuccess = function (){
+    
+    const db = request.result;
+    const transaction = db.transaction("items", "readwrite");
+
+    const store = transaction.objectStore("items");
+
+    
+
+    const countlength =  store.count();
+
+    
+
+    
+
+    countlength.onsuccess = function(){
+
+        DBsize = countlength.result;
+
+        if( DBsize == 0){
+            store.put({ id: 1, ProductID: 0, Name: "Name", Tag: "Tag", Price: "Price", Picture: "Price", SummarySection: "Summary Section"});
+            store.put({ id: 2, ProductID: 1, Name: "Regular Straight-Fit Jeans", Tag: "Pants", Price: "$23.80", Picture: "/Classy-Closet/Pictures/Items/item1.jpg", SummarySection: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas perspiciatis suscipit ipsa, ad tempora omnis! Quaerat maxime ratione eligendi voluptas hic omnis quam consequuntur. Laudantium enim libero maxime nisi velit."});
+            store.put({ id: 3, ProductID: 2, Name: "Forest Green Cotton Crew Neck Hiking T-Shirt", Tag: "Shirts", Price: "$15.00", Picture: "/Classy-Closet/Pictures/Items/item2.jpg", SummarySection: "Summary Section"});
+            store.put({ id: 4, ProductID: 3, Name: "Short Sleeve Solid Blue Skater Casual Twirly Dress with Pockets", Tag: "Dresses", Price: "$22.97", Picture: "/Classy-Closet/Pictures/Items/item3.jpg", SummarySection: ""});
+            store.put({ id: 5, ProductID: 4, Name: "Umo Lorenzo Clip on Tie Solid Neck Tie", Tag: "Ties", Price: "$10.99", Picture: "/Classy-Closet/Pictures/Items/item4.jpg", SummarySection: "Summary Section"});
+            store.put({ id: 6, ProductID: 5, Name: "XUECHEN Striped Tie", Tag: "Ties", Price: "$7.99", Picture: "/Classy-Closet/Pictures/Items/item5.jpg", SummarySection: "Summary Section"});
+            store.put({ id: 7, ProductID: 6, Name: "AWAYTR Bow tie", Tag: "Ties", Price: "$7.99", Picture: "/Classy-Closet/Pictures/Items/item6.jpg", SummarySection: "Summary Section"});
+            store.put({ id: 8, ProductID: 7, Name: "CHAOREN Ratchet Belt", Tag: "Beltes", Price: "$17.99", Picture: "/Classy-Closet/Pictures/Items/item7.jpg", SummarySection: "Summary Section"});
+            store.put({ id: 9, ProductID: 8, Name: "Columbia Unisex-Adult Military Web Belt", Tag: "Beltes", Price: "$11.98", Picture: "/Classy-Closet/Pictures/Items/item8.jpg", SummarySection: "Summary Section"});
+            store.put({ id: 10, ProductID: 9, Name: "BULLIANT Leather Woven Braided", Tag: "Beltes", Price: "$29.99", Picture: "/Classy-Closet/Pictures/Items/item9.jpg", SummarySection: "Summary Section"});
+            store.put({ id: 11, ProductID: 10, Name: "Naturalizer Women's Anna Pump", Tag: "Shoes", Price: "$119.99", Picture: "/Classy-Closet/Pictures/Items/item10.jpg", SummarySection: "Yes, the shoe does come as a pair"});
+            store.put({ id: 12, ProductID: 11, Name: "Giniros Running Shoes", Tag: "Shoes", Price: "$36.99", Picture: "/Classy-Closet/Pictures/Items/item11.jpg", SummarySection: "Yes, the shoe does come as a pair"});
+            store.put({ id: 13, ProductID: 12, Name: "ASICS Gel-Venture 8 Running Shoes", Tag: "Shoes", Price: "$54.95", Picture: "/Classy-Closet/Pictures/Items/item12.jpg", SummarySection: "Yes, the shoe does come as a pair"});
+            store.put({ id: 14, ProductID: 13, Name: "Rockport Eureka Walking Shoe", Tag: "Shoes", Price: "$69.95", Picture: "/Classy-Closet/Pictures/Items/item13.jpg", SummarySection: "Yes, the shoe does come as a pair"});
+            store.put({ id: 15, ProductID: 14, Name: "Crew Socks 12-Pack Black", Tag: "Sockes", Price: "$24.99", Picture: "/Classy-Closet/Pictures/Items/item14.jpg", SummarySection: "Summary Section"});
+            store.put({ id: 16, ProductID: 15, Name: "Crew Socks 12-Pack White", Tag: "Sockes", Price: "$24.99", Picture: "/Classy-Closet/Pictures/Items/item15.jpg", SummarySection: "Summary Section"});
+        }
+
+        //Some More Magic Man
+        let LostItems = 0;
+        for (let i = 1; i < DBsize + 1; i++) {
+          let elementTest = store.get(i);
+              elementTest.onsuccess = function(){
+                try{
+                  ([elementTest.result.ProductID]);
+                } catch {
+                  LostItems++;
+                }
+                if (DBsize == i){
+                  for(let j = 1; j < DBsize + 1 + LostItems; j++){
+                    let element = store.get(j);
+                element.onsuccess = function(){
+                  try{
+                    array.push([element.result.ProductID,element.result.Name,element.result.Tag,element.result.Price,element.result.Picture,element.result.SummarySection]);
+                  } catch {
+
+                  }
+                  }
+                }
+              }
+          }
+        }
+        
+    }
+    
+   
+
+    transaction.oncomplete = function (){
+        db.close(); 
+        StoredItems = array
+
+        databaseComplete();
+        
+        if (document.URL.includes(indexLink)){
+          featuredItemsBuilder();
+          treadingPageBuidlerIndex();
+          
+        } else if (document.URL.includes(catalogLink)){
+          catalogBuilder();
+        } else if (document.URL.includes(productLink)){
+          buildProduct();
+        } else if (document.URL.includes(cartLink)){
+          cartPageBuilder();
+        }
+    };
+};
+
+
+// request.onsuccess = function (){
+//   const db = request.result;
+//   const transaction = db.transaction("items", "readwrite");
+
+//   const store = transaction.objectStore("items");
+
+
+//   const remove = store.delete(8);
+
+//   remove.onsuccess = function (){
+//     console.log("removed" , remove.result);
+//     console.log(array);
+//   }
+// }
+
+
+
+function databaseComplete(){
+  //Tread Items - Input by Item Location/Product ID/Key/ Tag [0] - order inputted will display outputted
+const NominatedtreadingItems = [2,3,15,13,9,12,14];
 
 //feature__items - Input by Item Location/Product ID/Key/ Tag [0] - order inputted will display outputted
-const NominatedFeatureItems = [12,7,2,14,10,9,6,11,15,13,5,3,8];
+const NominatedFeatureItems = [12,2,14,10,9,6,11,15,13,3];
 
 //Finds the nomintated treading items, and gets there true position in the 2d array of stored items
-let FindNominatedTreadingItems= [];
+var FindNominatedTreadingItems= [];
 for (let i = 0; i < NominatedtreadingItems.length; i++) {
   let j = 0;
   while (NominatedtreadingItems[i] != StoredItems[j][0]){
@@ -68,7 +190,9 @@ for (let i = 0; i < NominatedtreadingItems.length; i++) {
   FindNominatedTreadingItems[i] = [j]
 }
 
-let StoredTrendItems = [];
+
+
+
 
 // creating two-dimensional array
 //rows
@@ -92,7 +216,7 @@ for (let i = 0; i < NominatedFeatureItems.length; i++) {
 }
 
 
-let StoredFeatureItems = [];
+
 
 // creating two-dimensional array
 //rows
@@ -103,6 +227,9 @@ for (let i = 0; i < NominatedFeatureItems.length; i++) {
     StoredFeatureItems[i][j] = StoredItems[NominatedFeatureItems[i]][j];
   }
 }
+}
+
+
 
 
 //Construct basic page elements

@@ -1,4 +1,3 @@
-treadingPageBuidlerIndex();
 
 function treadingPageBuidlerIndex(){
     const treadingPageWrap = `

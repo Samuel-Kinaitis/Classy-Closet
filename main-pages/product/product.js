@@ -1,4 +1,4 @@
-buildProduct();
+
 
 
 function ItemAmountAdd(){

@@ -1,4 +1,4 @@
-cartPageBuilder();
+
 function endOfProductDisply(){
     alert("This is the end of the website display");
     console.log("Outbound request: " + shoppingCart);

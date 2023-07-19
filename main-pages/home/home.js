@@ -1,4 +1,4 @@
-featuredItemsBuilder();
+
 function featuredItemsBuilder(){
     for (let i = 1; i < StoredFeatureItems.length; i++) {
   
