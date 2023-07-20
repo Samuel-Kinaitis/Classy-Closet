@@ -289,8 +289,176 @@ function ProductFromFeature(key){
       }
 }
 
+//Removes request item by It's ID from DB
+
+function RemoveItemFromDB(requested){
+
+    const request = indexedDB.open("CartDatabase", 1);
+    
+    request.onsuccess = function (){
+  const db = request.result;
+  const transaction = db.transaction("items", "readwrite");
+
+  const store = transaction.objectStore("items");
+
+
+  store.delete(requested-1);
+
+  transaction.oncomplete = function (){
+    db.close(); 
+  }
+}
+}
+
+/*
+Do not edit till DB delete is figured out 
 function BuildAddProductPage(){
     document.getElementById("mainElement").innerHTML = "";
 
+    const controlWrap = document.createElement("div");
+      controlWrap.classList = "Item__Container"
+      controlWrap.id = "AddFomrWrap";
+      document.getElementById("mainElement").appendChild(controlWrap);
+
+    const AddFormBuilder = `
+    <form onsubmit="addToDB(event)">
+        <input required type="text" id="Name" placeholder="Name">
+
+        <select required name="" id="Tag" placeholder="Tag">
+            <option value="Shirts">Shirts</option>
+            <option value="Pants">Pants</option>
+            <option value="Dresses">Dresses</option>
+            <option value="Ties">Ties</option>
+            <option value="Beltes">Beltes</option>
+            <option value="Shoes">Shoes</option>
+            <option value="Sockes">Sockes</option>
+        </select>
+
+        <input required type="text" id="Price" placeholder="Price (ex.$5.00)" pattern="[$][0-9]+\.[0-9]{2}">
+
+
+        <input required type="file" id="bannerImg"  />
+        <img src="" id="tableBanner" />
+
+
+        <input required type="text" id="Summary" placeholder="Summary Section">
+        <input type="submit" >
+    </form>
+    `
+
+    document.getElementById("AddFomrWrap").innerHTML = AddFormBuilder;
+
+
+    //Add to DB and also make picture 64based
+
+    // Get all variables
+var bannerImage = document.getElementById('bannerImg');
+var result = document.getElementById('res');
+var img = document.getElementById('tableBanner');
+
+var storableImg;
+
+// Add a change listener to the file input to inspect the uploaded file.
+bannerImage.addEventListener('change', function() {
+    var file = this.files[0];
+    // Basic type checking.
+    if (file.type.indexOf('image') < 0) {
+        res.innerHTML = 'invalid type';
+        return;
+    }
     
+    // Create a file reader
+    var fReader = new FileReader();
+
+    // Add complete behavior
+    fReader.onload = function() {
+        // Show the uploaded image to banner.
+        storableImg = fReader.result;
+        console.log(storableImg);
+        img.src = storableImg;
+    };
+    fReader.readAsDataURL(file);
+});
+
+function addToDB(event){
+    //console.log("Adding to DateBase");
+    event.preventDefault();
+
+    const request = indexedDB.open("CartDatabase", 1);
+
+    request.onerror = function (event) {
+        console.error("An error ocurred with IndexedDB");
+        console.error(event);
+    };
+    
+    request.onupgradeneeded = function () {
+        const db = request.result;
+        const store = db.createObjectStore("items", { keyPath: "id" });
+    
+    };
+    
+    request.onsuccess = function (){
+        
+        const db = request.result;
+        const transaction = db.transaction("items", "readwrite");
+    
+        const store = transaction.objectStore("items");
+    
+        
+
+        //Some More Magic Man,
+        let LostItems = 0;
+        for (let i = 1; i < DBsize + 1; i++) {
+          let elementTest = store.get(i);
+
+              //First one just goes through and see if it can get an element
+              elementTest.onsuccess = function(){
+                try{
+                  ([elementTest.result.ProductID]);
+                } catch {
+                  LostItems++; //If not added to not found
+                }
+
+                //Only when on the very last one
+                if (DBsize == i){
+
+                  //Not found added to adress that adition cycles that are needed
+                  for(let j = 1; j < DBsize + 1 + LostItems; j++){
+                    let element = store.get(j);
+                element.onsuccess = function(){
+                  try{
+                    array.push([element.result.ProductID,element.result.Name,element.result.Tag,element.result.Price,element.result.Picture,element.result.SummarySection]);
+                  } catch {
+
+                  }
+                  }
+                }
+              }
+          }
+        }
+
+
+    
+        const countlength =  store.count();
+    
+        
+    
+        countlength.onsuccess = function(){
+    
+            DBsize = countlength.result;
+
+
+
+
+            console.log("udpate", DBsize + 1, document.getElementById("Name").value, document.getElementById("Tag").value, document.getElementById("Price").value, "Img", document.getElementById("Summary").value)
+            store.put({ id: DBsize + 1, Name: document.getElementById("Name").value, Tag: document.getElementById("Tag").value, Price: document.getElementById("Price").value, Picture: storableImg, SummarySection: document.getElementById("Summary").value});
+
+        }
+    }
+
+    transaction.oncomplete = function (){
+        db.close();
+    };
 }
+}
+*/
