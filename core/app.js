@@ -13,6 +13,45 @@ var ItemAmount = 1;
 var StoredFeatureItems = [];
 var StoredTrendItems = [];
 
+var NominatedtreadingItems = localStorage.getItem("NominatedtreadingItems");
+if(NominatedtreadingItems == null){
+  console.log("failed");
+  localStorage.setItem("NominatedtreadingItems", "2,3,15,13,9,12,14");
+  NominatedtreadingItems = localStorage.getItem("NominatedtreadingItems");
+}
+var ArriedNTI = [];
+var SubNTI = "";
+for (let index = 0; index < NominatedtreadingItems.length + 1; index++) {
+  
+  if(NominatedtreadingItems.substring(index,index-1) == ","){
+    ArriedNTI.push(SubNTI);
+    SubNTI = "";
+  } else {
+    SubNTI =  SubNTI.concat(NominatedtreadingItems.substring(index,index-1));
+  }
+}
+ArriedNTI.push(SubNTI);
+NominatedtreadingItems = ArriedNTI;
+
+var NominatedFeatureItems = localStorage.getItem("NominatedFeatureItems");
+if(NominatedFeatureItems == null){
+  localStorage.setItem("NominatedFeatureItems", "2,3,15,13,9,12,14");
+  NominatedFeatureItems = localStorage.getItem("NominatedFeatureItems");
+}
+var ArriedNFI = [];
+var SubNFI = "";
+for (let index = 0; index < NominatedFeatureItems.length + 1; index++) {
+  
+  if(NominatedFeatureItems.substring(index,index-1) == ","){
+    ArriedNFI.push(SubNFI);
+    SubNFI = "";
+  } else {
+    SubNFI =  SubNFI.concat(NominatedFeatureItems.substring(index,index-1));
+  }
+}
+ArriedNFI.push(SubNFI);
+NominatedFeatureItems = ArriedNFI;
+
 //needs removable after testing
 // localStorage.removeItem("shoppingCart");
 // const thingus = ["5","1","$7.99","empty"];
@@ -88,7 +127,7 @@ request.onsuccess = function (){
         DBsize = countlength.result;
 
         if( DBsize == 0){
-            store.put({ id: 1, ProductID: 0, Name: "Name", Tag: "Tag", Price: "Price", Picture: "Price", SummarySection: "Summary Section"});
+            store.put({ id: 1, ProductID: 0, Name: "Name", Tag: "Tag", Price: "Price", Picture: "Picture", SummarySection: "Summary Section"});
             store.put({ id: 2, ProductID: 1, Name: "Regular Straight-Fit Jeans", Tag: "Pants", Price: "$23.80", Picture: "/Classy-Closet/Pictures/Items/item1.jpg", SummarySection: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas perspiciatis suscipit ipsa, ad tempora omnis! Quaerat maxime ratione eligendi voluptas hic omnis quam consequuntur. Laudantium enim libero maxime nisi velit."});
             store.put({ id: 3, ProductID: 2, Name: "Forest Green Cotton Crew Neck Hiking T-Shirt", Tag: "Shirts", Price: "$15.00", Picture: "/Classy-Closet/Pictures/Items/item2.jpg", SummarySection: "Summary Section"});
             store.put({ id: 4, ProductID: 3, Name: "Short Sleeve Solid Blue Skater Casual Twirly Dress with Pockets", Tag: "Dresses", Price: "$22.97", Picture: "/Classy-Closet/Pictures/Items/item3.jpg", SummarySection: ""});
@@ -106,17 +145,23 @@ request.onsuccess = function (){
             store.put({ id: 16, ProductID: 15, Name: "Crew Socks 12-Pack White", Tag: "Sockes", Price: "$24.99", Picture: "/Classy-Closet/Pictures/Items/item15.jpg", SummarySection: "Summary Section"});
         }
 
-        //Some More Magic Man
+        //Some More Magic Man,
         let LostItems = 0;
         for (let i = 1; i < DBsize + 1; i++) {
           let elementTest = store.get(i);
+
+              //First one just goes through and see if it can get an element
               elementTest.onsuccess = function(){
                 try{
                   ([elementTest.result.ProductID]);
                 } catch {
-                  LostItems++;
+                  LostItems++; //If not added to not found
                 }
+
+                //Only when on the very last one
                 if (DBsize == i){
+
+                  //Not found added to adress that adition cycles that are needed
                   for(let j = 1; j < DBsize + 1 + LostItems; j++){
                     let element = store.get(j);
                 element.onsuccess = function(){
@@ -151,6 +196,8 @@ request.onsuccess = function (){
           buildProduct();
         } else if (document.URL.includes(cartLink)){
           cartPageBuilder();
+        } else if (document.URL.includes("/Classy-Closet/support-pages/Employee/Employee.html")){
+          buildLogIn();
         }
     };
 };
@@ -175,10 +222,10 @@ request.onsuccess = function (){
 
 function databaseComplete(){
   //Tread Items - Input by Item Location/Product ID/Key/ Tag [0] - order inputted will display outputted
-const NominatedtreadingItems = [2,3,15,13,9,12,14];
+
 
 //feature__items - Input by Item Location/Product ID/Key/ Tag [0] - order inputted will display outputted
-const NominatedFeatureItems = [12,2,14,10,9,6,11,15,13,3];
+
 
 //Finds the nomintated treading items, and gets there true position in the 2d array of stored items
 var FindNominatedTreadingItems= [];
@@ -227,6 +274,7 @@ for (let i = 0; i < NominatedFeatureItems.length; i++) {
     StoredFeatureItems[i][j] = StoredItems[NominatedFeatureItems[i]][j];
   }
 }
+
 }
 
 

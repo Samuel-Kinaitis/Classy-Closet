@@ -1,7 +1,6 @@
 
 function featuredItemsBuilder(){
-    for (let i = 1; i < StoredFeatureItems.length; i++) {
-  
+    for (let i = 0; i < StoredFeatureItems.length; i++) {
       const box = document.createElement("div");
       box.classList = "FeatureItem__Container"
       box.id = "FeaturedItem_Box"+i;
