@@ -419,7 +419,6 @@ function RemoveItemFromDB(requested, key){
 
   transaction.oncomplete = function (){
     db.close();
-    console.log("repeat");
     BuildManageProductPage ();
   }
 }
@@ -521,14 +520,16 @@ function addToDB(event){
     
         const store = transaction.objectStore("items");
     
-        
+        store.put({ id: (StoredItems[StoredItems.length -1][0]) + 2,ProductID: (StoredItems[StoredItems.length -1][0]) + 1,Name: document.getElementById("Name").value, Tag: document.getElementById("Tag").value, Price: document.getElementById("Price").value, Picture: storableImg, SummarySection: document.getElementById("Summary").value});
 
-        const element = store.getAll();
-    element.onsuccess = () => {
-    array = element.result;
-    };
+        store.oncomplete = () =>{
+            const element = store.getAll();
+        element.onsuccess = () => {
+        array = element.result;
+        };
+        }
 
-
+    
 
 
     }
@@ -538,5 +539,6 @@ function addToDB(event){
         for (let index = 0; index < array.length; index++) {
             StoredItems.push([array[index].ProductID,array[index].Name,array[index].Tag,array[index].Price,array[index].Picture,array[index].SummarySection]);
           }
+          BuildAddProductPage();
     };
 }
