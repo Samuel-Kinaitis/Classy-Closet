@@ -80,10 +80,6 @@ function buildLogIn(){
         LoginStatus.id = "LoginStatus";
         LoginStatus.innerText = "LogIn";
             document.getElementById("userwrap").appendChild(LoginStatus);
-
-
-//Remove after done testing
-buildEmployeeDashboard();
         }
 function loginTest(user, password){
     if (user == userlogin && password == password){
