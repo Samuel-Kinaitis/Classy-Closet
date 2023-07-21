@@ -1,6 +1,9 @@
 
 function featuredItemsBuilder(){
     for (let i = 0; i < StoredFeatureItems.length; i++) {
+      if(StoredFeatureItems[i][0] == 0){
+
+      } else {
       const box = document.createElement("div");
       box.classList = "FeatureItem__Container"
       box.id = "FeaturedItem_Box"+i;
@@ -22,4 +25,5 @@ function featuredItemsBuilder(){
       price.classList = "FeatureItem__price"
     document.getElementById("FeaturedItem_Box"+i).appendChild(price);
     }
+  }
   }

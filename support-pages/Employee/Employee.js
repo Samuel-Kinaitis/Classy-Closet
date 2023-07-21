@@ -6,7 +6,7 @@
 var userlogin = "UserOne";
 var password = "Password";
 
-
+var storableImg;
 
 
 
@@ -186,6 +186,9 @@ function BuildManageProductPage(){
       removeBtn.classList = "Item__Container"
       removeBtn.id = "removeBtn"+i;
       removeBtn.innerText = "Remove";
+      removeBtn.onclick = function(){
+        RemoveItemFromDB(StoredItems[i][0],i);
+      }
       document.getElementById("Controls"+i).appendChild(removeBtn);
 
       const editBtn = document.createElement("button");
@@ -198,25 +201,24 @@ function BuildManageProductPage(){
         Treadingbtn.classList = "Item__Container"
         Treadingbtn.id = "Treadingbtn"+i;
 
-        for (let index = 0; index < StoredTrendItems.length; index++) {
-            if(StoredTrendItems[index][0] == i){
+        for (let index = 0; index < NominatedtreadingItems.length; index++) {
+            if(NominatedtreadingItems[index] == StoredItems[i][0]){
                 Treadingbtn.innerText = "Remove Treading";
                 break;
             } else {
                 Treadingbtn.innerText = "Set Treading";
             }
-            Treadingbtn.onclick = function(){
-                ProductFromTreading(i);
-            }
         }
-        
+        Treadingbtn.onclick = function(){
+            ProductFromTreading(i);
+        }
         document.getElementById("Controls"+i).appendChild(Treadingbtn);
 
         const Promotionbtn = document.createElement("button");
         Promotionbtn.classList = "Item__Container"
         Promotionbtn.id = "Promotionbtn"+i;
         for (let index = 0; index < StoredFeatureItems.length; index++) {
-            if(StoredFeatureItems[index][0] == i){
+            if(NominatedFeatureItems[index] == StoredItems[i][0]){
                 Promotionbtn.innerText = "Remove Promotion";
                 break;
             } else {
@@ -228,90 +230,202 @@ function BuildManageProductPage(){
         }
         document.getElementById("Controls"+i).appendChild(Promotionbtn);
         
-        //Don't really need this for now
-    //   const SwapBtn = document.createElement("button");
-    //   SwapBtn.classList = "Item__Container"
-    //   SwapBtn.id = "SwapBtn"+i;
-    //   SwapBtn.innerText = "SwapBtn";
-    //   document.getElementById("Controls"+i).appendChild(SwapBtn);
     }
 }
 
 function ProductFromTreading(key){
-    for (let index = 0; index < StoredTrendItems.length; index++) {
-        //If Item is found in the treading, remove it and stop
-        if(StoredTrendItems[index][0] == key){
 
+//new
+    document.getElementById("Treadingbtn"+key).disabled = true;
+    
+    //check if item is already in NominatedtreadingItems
+
+    for (let index = 0; index < NominatedtreadingItems.length; index++) {
+        if(NominatedtreadingItems[index] == StoredItems[key][0]){
+            //remove
+            console.log("remove");
+            NominatedtreadingItems.splice(index,1);
+            console.log(NominatedtreadingItems);
             document.getElementById("Treadingbtn"+key).innerText = "Add Treading";
-            return;
-        } else if(index + 1 == StoredTrendItems.length){
-                //If not found, add to treading
-            
-            NominatedtreadingItems.push(key.toString());
+            break;
+        } else if (index + 1 == NominatedtreadingItems.length){
+            //add
+            NominatedtreadingItems.push(StoredItems[key][0])
             document.getElementById("Treadingbtn"+key).innerText = "Remove Treading";
-        }
+            break;
+        }   
     }
-
     localStorage.setItem("NominatedtreadingItems", NominatedtreadingItems.toString());
+    NominatedtreadingItems = localStorage.getItem("NominatedtreadingItems");
 
-    for (let i = 0; i < NominatedtreadingItems.length; i++) {
-        StoredTrendItems[i] = [];
-        //columns
-        for (let j = 0; j < StoredItems[0].length; j++) {
-          StoredTrendItems[i][j] = StoredItems[NominatedtreadingItems[i]][j];
+    DeFrementTreadingItemsStacked();
+        function DeFrementTreadingItemsStacked (){
+        var ArriedNTI = [];
+        var SubNTI = "";
+        for (let index = 0; index < NominatedtreadingItems.length + 1; index++) {
+        
+        if(NominatedtreadingItems.substring(index,index-1) == ","){
+            ArriedNTI.push(SubNTI);
+            SubNTI = "";
+        } else {
+            SubNTI =  SubNTI.concat(NominatedtreadingItems.substring(index,index-1));
         }
-      }
+        }
+        ArriedNTI.push(SubNTI);
+        NominatedtreadingItems = ArriedNTI;
+        }
+    document.getElementById("Treadingbtn"+key).disabled = false;
 
 }
 
 
+
 function ProductFromFeature(key){
-    for (let index = 0; index < StoredFeatureItems.length; index++) {
-        //If Item is found in the featured, remove it and stop
-        if(StoredFeatureItems[index][0] == key){
-            NominatedFeatureItems.splice(index, 1,);
+    document.getElementById("Promotionbtn"+key).disabled = true;
+    
+    //check if item is already in NominatedFeatureItems
+
+    for (let index = 0; index < NominatedFeatureItems.length; index++) {
+        if(NominatedFeatureItems[index] == StoredItems[key][0]){
+            //remove
+            console.log("remove");
+            NominatedFeatureItems.splice(index,1);
+            console.log(NominatedFeatureItems);
             document.getElementById("Promotionbtn"+key).innerText = "Add Promotion";
             break;
-        } else if (index + 1 == StoredFeatureItems.length){
-                //If not found, add to featured
-        NominatedFeatureItems.push(key);
-        document.getElementById("Promotionbtn"+key).innerText = "Remove Promotion";
-        }
+        } else if (index + 1 == NominatedFeatureItems.length){
+            //add
+            NominatedFeatureItems.push(StoredItems[key][0])
+            document.getElementById("Promotionbtn"+key).innerText = "Remove Promotion";
+            break;
+        }   
     }
     localStorage.setItem("NominatedFeatureItems", NominatedFeatureItems.toString());
-    
-    for (let i = 0; i < NominatedFeatureItems.length; i++) {
-        StoredFeatureItems[i] = [];
-        //columns
-        for (let j = 0; j < StoredItems[0].length; j++) {
-          StoredFeatureItems[i][j] = StoredItems[NominatedFeatureItems[i]][j];
+    NominatedFeatureItems = localStorage.getItem("NominatedFeatureItems");
+    DeFrementFeatureItemsStacked();
+        function DeFrementFeatureItemsStacked(){
+        var ArriedNFI = [];
+        var SubNFI = "";
+        for (let index = 0; index < NominatedFeatureItems.length + 1; index++) {
+            
+            if(NominatedFeatureItems.substring(index,index-1) == ","){
+            ArriedNFI.push(SubNFI);
+            SubNFI = "";
+            } else {
+            SubNFI =  SubNFI.concat(NominatedFeatureItems.substring(index,index-1));
+            }
         }
-      }
+        ArriedNFI.push(SubNFI);
+        NominatedFeatureItems = ArriedNFI;
+        }
+    document.getElementById("Promotionbtn"+key).disabled = false;
+
 }
 
 //Removes request item by It's ID from DB
 
-function RemoveItemFromDB(requested){
+function RemoveItemFromDB(requested, key){
+    document.getElementById("box" + key).style.display='none';
+
+    console.log("Removed", requested);
+    //Remove From Treading and Promotion
+
+    //Treading
+
+    for (let index = 0; index < NominatedtreadingItems.length; index++) {
+        if(NominatedtreadingItems[index] == requested){
+            //remove
+            NominatedtreadingItems.splice(index,1);
+            break;
+        } 
+    }
+    localStorage.setItem("NominatedtreadingItems", NominatedtreadingItems.toString());
+
+    NominatedtreadingItems = localStorage.getItem("NominatedtreadingItems");
+
+    DeFrementTreadingItemsStacked();
+        function DeFrementTreadingItemsStacked (){
+        var ArriedNTI = [];
+        var SubNTI = "";
+        for (let index = 0; index < NominatedtreadingItems.length + 1; index++) {
+        
+        if(NominatedtreadingItems.substring(index,index-1) == ","){
+            ArriedNTI.push(SubNTI);
+            SubNTI = "";
+        } else {
+            SubNTI =  SubNTI.concat(NominatedtreadingItems.substring(index,index-1));
+        }
+        }
+        ArriedNTI.push(SubNTI);
+        NominatedtreadingItems = ArriedNTI;
+        }
+
+    //Promotion
+
+    for (let index = 0; index < NominatedFeatureItems.length; index++) {
+        if(NominatedFeatureItems[index] == requested){
+            //remove
+            NominatedFeatureItems.splice(index,1);
+            break;
+        }
+    }
+    localStorage.setItem("NominatedFeatureItems", NominatedFeatureItems.toString());
+
+    NominatedFeatureItems = localStorage.getItem("NominatedFeatureItems");
+    DeFrementFeatureItemsStacked();
+        function DeFrementFeatureItemsStacked(){
+        var ArriedNFI = [];
+        var SubNFI = "";
+        for (let index = 0; index < NominatedFeatureItems.length + 1; index++) {
+            
+            if(NominatedFeatureItems.substring(index,index-1) == ","){
+            ArriedNFI.push(SubNFI);
+            SubNFI = "";
+            } else {
+            SubNFI =  SubNFI.concat(NominatedFeatureItems.substring(index,index-1));
+            }
+        }
+        ArriedNFI.push(SubNFI);
+        NominatedFeatureItems = ArriedNFI;
+        }
+    //Database
+
+
 
     const request = indexedDB.open("CartDatabase", 1);
-    
+
     request.onsuccess = function (){
   const db = request.result;
   const transaction = db.transaction("items", "readwrite");
 
   const store = transaction.objectStore("items");
 
+  
+  const removale = store.delete((requested) + 1);
 
-  store.delete(requested-1);
+  removale.onsuccess = function(){
+
+    //Update db to stored items
+
+    const element = store.getAll();
+    element.onsuccess = () => {
+    array = element.result;
+    StoredItems = []
+      for (let index = 0; index < array.length; index++) {
+          StoredItems.push([array[index].ProductID,array[index].Name,array[index].Tag,array[index].Price,array[index].Picture,array[index].SummarySection]);
+        }
+    };
+  }
 
   transaction.oncomplete = function (){
-    db.close(); 
+    db.close();
+    console.log("repeat");
+    BuildManageProductPage ();
   }
 }
 }
 
-/*
-Do not edit till DB delete is figured out 
+//Do not edit till DB delete is figured out 
 function BuildAddProductPage(){
     document.getElementById("mainElement").innerHTML = "";
 
@@ -321,7 +435,7 @@ function BuildAddProductPage(){
       document.getElementById("mainElement").appendChild(controlWrap);
 
     const AddFormBuilder = `
-    <form onsubmit="addToDB(event)">
+    <form onsubmit="addToDB(event)" id="InputForm">
         <input required type="text" id="Name" placeholder="Name">
 
         <select required name="" id="Tag" placeholder="Tag">
@@ -356,7 +470,7 @@ var bannerImage = document.getElementById('bannerImg');
 var result = document.getElementById('res');
 var img = document.getElementById('tableBanner');
 
-var storableImg;
+
 
 // Add a change listener to the file input to inspect the uploaded file.
 bannerImage.addEventListener('change', function() {
@@ -374,11 +488,13 @@ bannerImage.addEventListener('change', function() {
     fReader.onload = function() {
         // Show the uploaded image to banner.
         storableImg = fReader.result;
-        console.log(storableImg);
+        //console.log(storableImg);
         img.src = storableImg;
     };
     fReader.readAsDataURL(file);
 });
+
+}
 
 function addToDB(event){
     //console.log("Adding to DateBase");
@@ -397,6 +513,7 @@ function addToDB(event){
     
     };
     
+
     request.onsuccess = function (){
         
         const db = request.result;
@@ -406,59 +523,20 @@ function addToDB(event){
     
         
 
-        //Some More Magic Man,
-        let LostItems = 0;
-        for (let i = 1; i < DBsize + 1; i++) {
-          let elementTest = store.get(i);
-
-              //First one just goes through and see if it can get an element
-              elementTest.onsuccess = function(){
-                try{
-                  ([elementTest.result.ProductID]);
-                } catch {
-                  LostItems++; //If not added to not found
-                }
-
-                //Only when on the very last one
-                if (DBsize == i){
-
-                  //Not found added to adress that adition cycles that are needed
-                  for(let j = 1; j < DBsize + 1 + LostItems; j++){
-                    let element = store.get(j);
-                element.onsuccess = function(){
-                  try{
-                    array.push([element.result.ProductID,element.result.Name,element.result.Tag,element.result.Price,element.result.Picture,element.result.SummarySection]);
-                  } catch {
-
-                  }
-                  }
-                }
-              }
-          }
-        }
-
-
-    
-        const countlength =  store.count();
-    
-        
-    
-        countlength.onsuccess = function(){
-    
-            DBsize = countlength.result;
+        const element = store.getAll();
+    element.onsuccess = () => {
+    array = element.result;
+    };
 
 
 
 
-            console.log("udpate", DBsize + 1, document.getElementById("Name").value, document.getElementById("Tag").value, document.getElementById("Price").value, "Img", document.getElementById("Summary").value)
-            store.put({ id: DBsize + 1, Name: document.getElementById("Name").value, Tag: document.getElementById("Tag").value, Price: document.getElementById("Price").value, Picture: storableImg, SummarySection: document.getElementById("Summary").value});
-
-        }
     }
-
-    transaction.oncomplete = function (){
+    request.oncomplete = function (){
         db.close();
+        StoredItems = []
+        for (let index = 0; index < array.length; index++) {
+            StoredItems.push([array[index].ProductID,array[index].Name,array[index].Tag,array[index].Price,array[index].Picture,array[index].SummarySection]);
+          }
     };
 }
-}
-*/

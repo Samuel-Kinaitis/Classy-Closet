@@ -15,11 +15,13 @@ var StoredTrendItems = [];
 
 var NominatedtreadingItems = localStorage.getItem("NominatedtreadingItems");
 if(NominatedtreadingItems == null){
-  console.log("failed");
   localStorage.setItem("NominatedtreadingItems", "2,3,15,13,9,12,14");
   NominatedtreadingItems = localStorage.getItem("NominatedtreadingItems");
 }
-var ArriedNTI = [];
+
+DeFrementTreadingItemsStacked();
+function DeFrementTreadingItemsStacked (){
+  var ArriedNTI = [];
 var SubNTI = "";
 for (let index = 0; index < NominatedtreadingItems.length + 1; index++) {
   
@@ -32,25 +34,31 @@ for (let index = 0; index < NominatedtreadingItems.length + 1; index++) {
 }
 ArriedNTI.push(SubNTI);
 NominatedtreadingItems = ArriedNTI;
+}
+
 
 var NominatedFeatureItems = localStorage.getItem("NominatedFeatureItems");
 if(NominatedFeatureItems == null){
   localStorage.setItem("NominatedFeatureItems", "2,3,15,13,9,12,14");
   NominatedFeatureItems = localStorage.getItem("NominatedFeatureItems");
 }
-var ArriedNFI = [];
-var SubNFI = "";
-for (let index = 0; index < NominatedFeatureItems.length + 1; index++) {
-  
-  if(NominatedFeatureItems.substring(index,index-1) == ","){
-    ArriedNFI.push(SubNFI);
-    SubNFI = "";
-  } else {
-    SubNFI =  SubNFI.concat(NominatedFeatureItems.substring(index,index-1));
+DeFrementFeatureItemsStacked();
+function DeFrementFeatureItemsStacked(){
+  var ArriedNFI = [];
+  var SubNFI = "";
+  for (let index = 0; index < NominatedFeatureItems.length + 1; index++) {
+    
+    if(NominatedFeatureItems.substring(index,index-1) == ","){
+      ArriedNFI.push(SubNFI);
+      SubNFI = "";
+    } else {
+      SubNFI =  SubNFI.concat(NominatedFeatureItems.substring(index,index-1));
+    }
   }
+  ArriedNFI.push(SubNFI);
+  NominatedFeatureItems = ArriedNFI;
 }
-ArriedNFI.push(SubNFI);
-NominatedFeatureItems = ArriedNFI;
+
 
 //needs removable after testing
 // localStorage.removeItem("shoppingCart");
@@ -145,36 +153,13 @@ request.onsuccess = function (){
             store.put({ id: 16, ProductID: 15, Name: "Crew Socks 12-Pack White", Tag: "Sockes", Price: "$24.99", Picture: "/Classy-Closet/Pictures/Items/item15.jpg", SummarySection: "Summary Section"});
         }
 
-        //Some More Magic Man,
-        let LostItems = 0;
-        for (let i = 1; i < DBsize + 1; i++) {
-          let elementTest = store.get(i);
 
-              //First one just goes through and see if it can get an element
-              elementTest.onsuccess = function(){
-                try{
-                  ([elementTest.result.ProductID]);
-                } catch {
-                  LostItems++; //If not added to not found
-                }
 
-                //Only when on the very last one
-                if (DBsize == i){
-
-                  //Not found added to adress that adition cycles that are needed
-                  for(let j = 1; j < DBsize + 1 + LostItems; j++){
-                    let element = store.get(j);
-                element.onsuccess = function(){
-                  try{
-                    array.push([element.result.ProductID,element.result.Name,element.result.Tag,element.result.Price,element.result.Picture,element.result.SummarySection]);
-                  } catch {
-
-                  }
-                  }
-                }
-              }
-          }
-        }
+const element = store.getAll();
+element.onsuccess = () => {
+  array = element.result;
+};
+     
         
     }
     
@@ -182,7 +167,11 @@ request.onsuccess = function (){
 
     transaction.oncomplete = function (){
         db.close(); 
-        StoredItems = array
+        //StoredItems = array
+
+        for (let index = 0; index < array.length; index++) {
+          StoredItems.push([array[index].ProductID,array[index].Name,array[index].Tag,array[index].Price,array[index].Picture,array[index].SummarySection]);
+        }
 
         databaseComplete();
         
@@ -203,75 +192,54 @@ request.onsuccess = function (){
 };
 
 
-// request.onsuccess = function (){
-//   const db = request.result;
-//   const transaction = db.transaction("items", "readwrite");
 
-//   const store = transaction.objectStore("items");
-
-
-//   const remove = store.delete(8);
-
-//   remove.onsuccess = function (){
-//     console.log("removed" , remove.result);
-//     console.log(array);
-//   }
-// }
 
 
 
 function databaseComplete(){
-  //Tread Items - Input by Item Location/Product ID/Key/ Tag [0] - order inputted will display outputted
 
 
-//feature__items - Input by Item Location/Product ID/Key/ Tag [0] - order inputted will display outputted
+DeFrementTreadingItems();
+function DeFrementTreadingItems(){
+  NominatedtreadingItems = localStorage.getItem("NominatedtreadingItems");
 
+  DeFrementTreadingItemsStacked();
 
-//Finds the nomintated treading items, and gets there true position in the 2d array of stored items
-var FindNominatedTreadingItems= [];
-for (let i = 0; i < NominatedtreadingItems.length; i++) {
-  let j = 0;
-  while (NominatedtreadingItems[i] != StoredItems[j][0]){
-    j++;
-  }
-  FindNominatedTreadingItems[i] = [j]
-}
-
-
-
-
-
-// creating two-dimensional array
-//rows
-for (let i = 0; i < FindNominatedTreadingItems.length; i++) {
-  StoredTrendItems[i] = [];
-  //columns
-  for (let j = 0; j < StoredItems[0].length; j++) {
-    StoredTrendItems[i][j] = StoredItems[FindNominatedTreadingItems[i]][j];
+//Storage
+StoredTrendItems = [];
+  for (let i = 0; i < NominatedtreadingItems.length; i++) {
+    for (let index = 0; index < StoredItems.length; index++) {
+      if (StoredItems[index][0] == NominatedtreadingItems[i]){
+        StoredTrendItems.push([StoredItems[index][0], StoredItems[index][1],StoredItems[index][2],StoredItems[index][3],StoredItems[index][4]]);
+        break;
+      }
+    }
   }
 }
 
 
-//Finds the nomintated featured items, and gets there true position in the 2d array of stored items
-let FindNominatedFeatureItems= [];
-for (let i = 0; i < NominatedFeatureItems.length; i++) {
-  let j = 0;
-  while (NominatedFeatureItems[i] != StoredItems[j][0]){
-    j++;
-  }
-  NominatedFeatureItems[i] = [j]
-}
 
 
 
+DeFrementFeatureItems();
+function DeFrementFeatureItems (){
 
-// creating two-dimensional array
-//rows
-for (let i = 0; i < NominatedFeatureItems.length; i++) {
-  StoredFeatureItems[i] = [];
-  //columns
-  for (let j = 0; j < StoredItems[0].length; j++) {
-    StoredFeatureItems[i][j] = StoredItems[NominatedFeatureItems[i]][j];
+  NominatedFeatureItems = localStorage.getItem("NominatedFeatureItems");
+
+  DeFrementFeatureItemsStacked();
+
+  for (let i = 0; i < NominatedFeatureItems.length; i++) {
+    StoredFeatureItems[i] = [];
+    //columns
+    for (let j = 0; j < StoredItems[0].length; j++) {
+  
+      for (let index = 0; index < StoredItems.length; index++) {
+        if(NominatedFeatureItems[i] == StoredItems[index][0]){
+          StoredFeatureItems[i][j] = StoredItems[index][j];
+          break;
+        } 
+      }
+    }
   }
 }
 
