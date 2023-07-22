@@ -1,0 +1,61 @@
+main{
+    margin: 20px;  
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+#falseNoticeMessage{
+    text-align: center;
+    line-height: 2;
+    font-size: 1.15rem;   
+}
+
+main p {
+    text-align: center;
+    line-height: 1.5;   
+    margin: 5px 0;
+    font-size: 1.15rem; 
+}
+
+/*Main ↑ | sectioning ↓*/
+
+main h1{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+main h2{
+    text-align: center;
+    margin-top: 25px;
+    margin-left: 5px;
+}
+
+main h2 + p{
+    margin-left: 10px;
+}
+
+main hr{
+    margin: 25px 0;
+}
+
+main a{
+    color: hsl(210, 95%, 40%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+main a:hover{
+    color: hsl(0, 95%, 40%);
+}
+
+main a:active{
+    color: hsl(60, 95%, 40%);
+}
+
+@media screen and (max-width: 960px){
+    main {
+        margin: 10px;  
+      }
+}

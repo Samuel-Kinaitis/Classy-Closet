@@ -1,0 +1,107 @@
+main{
+    margin: 20px;  
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+/*Login*/
+
+.userwrap{
+    text-align: center;
+    margin: 25px 0;
+}
+
+#userinfowrap{
+    margin: 25px 0;
+}
+
+#loginform{
+    display: grid;
+}
+
+#loginform input{
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 5px 0;
+    margin: 5px 0;
+}
+
+#LoginStatus{
+    margin: 25px 0;
+}
+
+/*Dashbord*/
+
+#dashboardWrap{
+    text-align: center;
+    margin: 25px;
+}
+
+.dashboardBtn{
+    margin: 20px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    padding: 10px 25px;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 55%);
+}
+
+.dashboardBtn:hover{
+    box-shadow: 5px 5px 5px hsl(0, 0%, 55%);
+}
+
+.Item__Container{
+    display: flex;
+    border: 2px solid black;
+    margin: 25px auto;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 55%);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.Item__Container img{
+    max-width: 300px;
+    max-height: 400px;
+    margin: 15px 10px;
+    position: relative;
+}
+.controlWrap{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.inforwrap{
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+}
+
+.controlWrap button{
+    font-size: 1.1rem;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 55%);
+    border: 0;
+    border-radius: 5px;
+    margin: 25px 0;
+    margin-right: 25px;
+    padding: 15px;
+}
+
+.controlWrap button:hover{
+    box-shadow: 5px 5px 5px hsl(0, 0%, 55%);
+}
+
+#buildEmployeeDashboard{
+    font-size: 1.1rem;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 55%);
+    border: 0;
+    border-radius: 5px;
+    margin: 25px 0;
+    margin-right: 25px;
+    padding: 15px;
+}
+
+#buildEmployeeDashboard:hover{
+    box-shadow: 5px 5px 5px hsl(0, 0%, 55%);    
+}
+

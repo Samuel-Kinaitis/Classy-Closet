@@ -1,0 +1,34 @@
+main{
+    margin: 20px;  
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+#falseNoticeMessage{
+    text-align: center;
+    line-height: 2;
+    font-size: 1.15rem;   
+}
+
+main p {
+    line-height: 1.5;   
+    margin: 5px 0;
+    font-size: 1.15rem; 
+}
+
+/*Main ↑ | sectioning ↓*/
+
+
+
+@media screen and (max-width: 960px){
+    main {
+        margin: 10px;  
+      }
+
+      /*
+    main *{
+        margin-left: 0;
+        text-align: center;
+    }
+    */
+}

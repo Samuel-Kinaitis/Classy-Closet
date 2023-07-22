@@ -13,6 +13,8 @@ var ItemAmount = 1;
 var StoredFeatureItems = [];
 var StoredTrendItems = [];
 
+const productLink = "/Classy-Closet/main-pages/product/product.html";
+
 var NominatedtreadingItems = localStorage.getItem("NominatedtreadingItems");
 if(NominatedtreadingItems == null){
   localStorage.setItem("NominatedtreadingItems", "2,3,15,13,9,12,14");
@@ -59,11 +61,6 @@ function DeFrementFeatureItemsStacked(){
   NominatedFeatureItems = ArriedNFI;
 }
 
-
-//needs removable after testing
-// localStorage.removeItem("shoppingCart");
-// const thingus = ["5","1","$7.99","empty"];
-// localStorage.setItem("shoppingCart", thingus);
 
 if(shoppingCart == null){
   localStorage.setItem("shoppingCart", []);
@@ -133,7 +130,7 @@ request.onsuccess = function (){
     countlength.onsuccess = function(){
 
         DBsize = countlength.result;
-
+        // database is cleared, on reload
         if( DBsize == 0){
             store.put({ id: 1, ProductID: 0, Name: "Name", Tag: "Tag", Price: "Price", Picture: "Picture", SummarySection: "Summary Section"});
             store.put({ id: 2, ProductID: 1, Name: "Regular Straight-Fit Jeans", Tag: "Pants", Price: "$23.80", Picture: "/Classy-Closet/Pictures/Items/item1.jpg", SummarySection: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas perspiciatis suscipit ipsa, ad tempora omnis! Quaerat maxime ratione eligendi voluptas hic omnis quam consequuntur. Laudantium enim libero maxime nisi velit."});
@@ -181,8 +178,9 @@ element.onsuccess = () => {
           
         } else if (document.URL.includes(catalogLink)){
           catalogBuilder();
-        } else if (document.URL.includes(productLink)){
+        } else if (document.URL.includes("/Classy-Closet/main-pages/product/product.html")){
           buildProduct();
+          treadingPageBuidlerIndex();
         } else if (document.URL.includes(cartLink)){
           cartPageBuilder();
         } else if (document.URL.includes("/Classy-Closet/support-pages/Employee/Employee.html")){
@@ -255,7 +253,7 @@ footerBuilder();
 
 
 
-//rat magic, needs to be replace by a real indexedDB instead of this banjo playing fucntion (I took way too much ducttap, but it can surive a nuke? maybe)
+// needs to be replace by a real indexedDB instead
 function cartStorageDefragmenting(){
   let row = 0;
   let comule = 0;
@@ -308,9 +306,6 @@ function headerBuilder(){
         <li class="navbar__item">
           <a id="catalogLink" class="navbar__links" onclick="categorySort('All')">Catalog</a>
         </li>
-        <li class="navbar__item">
-            <a id="productLink" class="navbar__links">Product</a>
-          </li>
         <li class="navbar__btn" id="cartBtn" ><a id="cartLink" href="/" class="button">Cart</a></li>
       </ul> 
     </div>
@@ -334,18 +329,13 @@ indexLink.href = "/Classy-Closet/main-pages/home/home.html"
 const catalogLink = document.getElementById('catalogLink');
 catalogLink.href = "/Classy-Closet/main-pages/catalog/catalog.html"
 
-const productLink = document.getElementById('productLink');
-productLink.href = "/Classy-Closet/main-pages/product/product.html"
-
 const cartLink = document.getElementById('cartLink');
 cartLink.href = "/Classy-Closet/main-pages/cart/cart.html"
 
   //highlight current page in navbar
   if(document.URL.includes(catalogLink)){
     document.getElementById("catalogLink").className = "navbar__links__active"
-  }else if(document.URL.includes(productLink)){
-    document.getElementById("productLink").className = "navbar__links__active"
-  } else if(document.URL.includes(cartLink)){
+  }else if(document.URL.includes(cartLink)){
     document.getElementById("cartLink").className = "button__active"
   } else if(document.URL.includes(indexLink)){
     document.getElementById("indexLink").className = "navbar__links__active"
@@ -367,13 +357,13 @@ function footerBuilder(){
               <div class="footer__link--items">
                 <h2>About Us</h2>
                   <a href="/Classy-Closet/support-pages/how-it-works/how-it-works.html">How it works</a>
-                  <a href="">Testimonials</a>
+                  <a href="/Classy-Closet/support-pages/Employee/Employee.html">Employee</a>
                   <a href="/Classy-Closet/support-pages/tos/terms-of-service.html">Terms of Service</a>
               </div>
               <div class="footer__link--items">
                 <h2>Contact Us</h2>
                 <a href="/Classy-Closet/support-pages/contact/contact.html">Contact</a> 
-                <a href="">Support</a>
+                <a href="/Classy-Closet/support-pages/support/support.html">Support</a>
                 <a href="/Classy-Closet/support-pages/careers/careers.html">Careers</a>
               </div>
               <div class="footer__link--items">

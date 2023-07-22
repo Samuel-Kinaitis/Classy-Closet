@@ -4,11 +4,13 @@
 
 //How to not do secuity :)
 var userlogin = "UserOne";
-var password = "Password";
+var passwordlogin = "Password";
 
 var storableImg;
 
-
+const GoBackToDashBordBtn = `
+<button onclick="buildEmployeeDashboard()" id="buildEmployeeDashboard">Go To Dashboard</button>
+`
 
 
 //functions
@@ -19,7 +21,7 @@ function buildLogIn(){
     //build log in section
     //login form
     const userwrap = document.createElement("div");
-    userwrap.classList = ""
+    userwrap.classList = "userwrap"
     userwrap.id = "userwrap";
         document.getElementById("mainElement").appendChild(userwrap);
 
@@ -38,7 +40,7 @@ function buildLogIn(){
             const userinfoPassword = document.createElement("p");
             userinfoPassword.classList = ""
             userinfoPassword.id = "userinfousername";
-            userinfoPassword.innerText = "Password: " + password;
+            userinfoPassword.innerText = "Password: " + passwordlogin;
                 document.getElementById("userinfowrap").appendChild(userinfoPassword);
     
 
@@ -78,11 +80,11 @@ function buildLogIn(){
         const LoginStatus = document.createElement("p");
         LoginStatus.classList = ""
         LoginStatus.id = "LoginStatus";
-        LoginStatus.innerText = "LogIn";
+        LoginStatus.innerText = "";
             document.getElementById("userwrap").appendChild(LoginStatus);
         }
-function loginTest(user, password){
-    if (user == userlogin && password == password){
+function loginTest(userEntered, passwordEntered){
+    if ((userEntered == userlogin) && (passwordEntered == passwordlogin)){
         buildEmployeeDashboard();
     } else {
         LoginStatus.innerText = "LogIn Failed, Username and/or Password is incorrect";
@@ -100,27 +102,29 @@ function buildEmployeeDashboard(){
         document.getElementById("mainElement").appendChild(dashboardWrap);
 
     const MangageProductBtn = document.createElement("button");
-    MangageProductBtn.classList = ""
+    MangageProductBtn.classList = "dashboardBtn";
     MangageProductBtn.innerText = "Manage Products";
     MangageProductBtn.onclick = function() {
         BuildManageProductPage();
     }
-    MangageProductBtn.id = "dashboardWrap";
+    MangageProductBtn.id = "MangageProductBtn";
         document.getElementById("dashboardWrap").appendChild(MangageProductBtn);
 
     const AddProductBtn = document.createElement("button");
-    AddProductBtn.classList = ""
+    AddProductBtn.classList = "dashboardBtn";
     AddProductBtn.innerText = "Add Products";
     AddProductBtn.onclick = function(){
         BuildAddProductPage();
     }
-    AddProductBtn.id = "dashboardWrap";
+    AddProductBtn.id = "AddProductBtn";
         document.getElementById("dashboardWrap").appendChild(AddProductBtn);
 
 }
 
 function BuildManageProductPage(){
     document.getElementById("mainElement").innerHTML = "";
+
+    document.getElementById("mainElement").innerHTML = GoBackToDashBordBtn;
 
     const ManageProductWrap = document.createElement("div");
     ManageProductWrap.classList = ""
@@ -143,7 +147,7 @@ function BuildManageProductPage(){
     //info
 
     const inforwrap = document.createElement("div");
-    inforwrap.classList = "Item__Container"
+    inforwrap.classList = "inforwrap"
     inforwrap.id = "inforwrap"+i;
     document.getElementById("box"+i).appendChild(inforwrap);
 
@@ -174,12 +178,12 @@ function BuildManageProductPage(){
 
       //Controls
       const controlWrap = document.createElement("div");
-      controlWrap.classList = "Item__Container"
+      controlWrap.classList = "controlWrap"
       controlWrap.id = "Controls"+i;
       document.getElementById("box"+i).appendChild(controlWrap);
 
       const removeBtn = document.createElement("button");
-      removeBtn.classList = "Item__Container"
+      removeBtn.classList = "removeBtn";
       removeBtn.id = "removeBtn"+i;
       removeBtn.innerText = "Remove";
       removeBtn.onclick = function(){
@@ -187,14 +191,9 @@ function BuildManageProductPage(){
       }
       document.getElementById("Controls"+i).appendChild(removeBtn);
 
-      const editBtn = document.createElement("button");
-      editBtn.classList = "Item__Container"
-      editBtn.id = "editBtn"+i;
-      editBtn.innerText = "Edit";
-      document.getElementById("Controls"+i).appendChild(editBtn);
 
       const Treadingbtn = document.createElement("button");
-        Treadingbtn.classList = "Item__Container"
+        Treadingbtn.classList = "Treadingbtn"
         Treadingbtn.id = "Treadingbtn"+i;
 
         for (let index = 0; index < NominatedtreadingItems.length; index++) {
@@ -211,7 +210,7 @@ function BuildManageProductPage(){
         document.getElementById("Controls"+i).appendChild(Treadingbtn);
 
         const Promotionbtn = document.createElement("button");
-        Promotionbtn.classList = "Item__Container"
+        Promotionbtn.classList = "Promotionbtn"
         Promotionbtn.id = "Promotionbtn"+i;
         for (let index = 0; index < StoredFeatureItems.length; index++) {
             if(NominatedFeatureItems[index] == StoredItems[i][0]){
@@ -423,9 +422,10 @@ function RemoveItemFromDB(requested, key){
 //Do not edit till DB delete is figured out 
 function BuildAddProductPage(){
     document.getElementById("mainElement").innerHTML = "";
+    document.getElementById("mainElement").innerHTML = GoBackToDashBordBtn;
 
     const controlWrap = document.createElement("div");
-      controlWrap.classList = "Item__Container"
+      controlWrap.classList = "controlWrap"
       controlWrap.id = "AddFomrWrap";
       document.getElementById("mainElement").appendChild(controlWrap);
 
@@ -446,7 +446,7 @@ function BuildAddProductPage(){
         <input required type="text" id="Price" placeholder="Price (ex.$5.00)" pattern="[$][0-9]+\.[0-9]{2}">
 
 
-        <input required type="file" id="bannerImg"  />
+        <input required type="file" id="bannerImg" accept="image/jpeg, image/png" />
         <img src="" id="tableBanner" />
 
 
@@ -456,7 +456,6 @@ function BuildAddProductPage(){
     `
 
     document.getElementById("AddFomrWrap").innerHTML = AddFormBuilder;
-
 
     //Add to DB and also make picture 64based
 

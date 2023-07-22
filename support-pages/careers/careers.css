@@ -1,0 +1,90 @@
+main{
+    margin: 20px;  
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+main p {
+    line-height: 1.5;   
+    margin: 5px 0;
+    font-size: 1.15rem; 
+}
+
+/*Main ↑ | sectioning ↓*/
+
+main h1{
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 3rem;
+}
+
+main h2{
+    padding: 25px 0 0 5px;
+}
+
+main h2 + p{
+    margin-left: 5px;
+}
+
+main h3{
+    padding: 15px 0 5px 15px;
+    font-size: 1.35rem;
+}
+
+main h3 + p{
+    margin-left: 15px;
+}
+
+main div{
+    padding-left: 15px;
+}
+
+main h4{
+    padding: 25px 0 0 5px;
+    font-size: 1.25rem;
+}
+
+main h5{
+    padding: 15px 0 5px 10px;
+    font-size: 1.15rem;
+}
+
+main h5 + p{
+    margin-left: 10px;
+}
+
+main ul{
+    margin-left: 10px;
+}
+main li{
+    margin-left: 25px;
+    margin-bottom: 10px;
+    font-size: 1.15rem; 
+}
+
+main button{
+    margin: 20px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    padding: 10px 25px;
+    box-shadow: 3px 3px 5px hsl(0, 0%, 55%);
+}
+
+main button:hover{
+    box-shadow: 5px 5px 5px hsl(0, 0%, 55%);
+}
+
+main hr{
+    margin: 15px;
+}
+
+@media screen and (max-width: 960px){
+    main {
+        margin: 10px;  
+      }
+}
+
+
+
