@@ -105,3 +105,19 @@ main{
     box-shadow: 5px 5px 5px hsl(0, 0%, 55%);    
 }
 
+.inforwrap *{
+    margin: 20px 0;
+}
+
+@media screen and (max-width: 960px){
+
+    .Item__Container{
+        text-align: center;
+        display: block;
+    }
+
+    .controlWrap button{
+        margin: 10px 25px;
+    }
+
+}
