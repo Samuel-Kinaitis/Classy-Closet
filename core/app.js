@@ -300,11 +300,11 @@ function headerBuilder(){
         <span class="bar"></span>
       </div>
       <ul class="navbar__menu">
-        <li class="navbar__item">
-          <a id="indexLink" class="navbar__links">Home</a>
+        <li class="navbar__btn">
+          <a id="indexLink" class="button">Home</a>
         </li>
-        <li class="navbar__item">
-          <a id="catalogLink" class="navbar__links" onclick="categorySort('All')">Catalog</a>
+        <li class="navbar__btn">
+          <a id="catalogLink" class="button" onclick="categorySort('All')">Catalog</a>
         </li>
         <li class="navbar__btn" id="cartBtn" ><a id="cartLink" href="/" class="button">Cart</a></li>
       </ul> 
