@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="404 Error Page">
+    <title>404 Error Page Not Found</title>
+    <style>
+        body {background-color: white;}
+        div{text-align: center; padding-top: 20vh;}
+        *    {color: black; font-size: 1.25rem;font-family: Arial, sans-serif;}
+        h1{font-size: 4rem; }
+        h2{font-size: 2rem;}
+        a{color: #f77062;}
+        a:hover{ color: #4837ff;}
+        </style>
+</head>
+<body>
+    <div>
+        <h1>404</h1>
+        <h2>Oops! Page Not Found</h2>
+        <p>I am sorry, but the page you are looking for does not exist or has been moved.</p>
+        <p id="time">Automatic redirect broken, please use manual redirect below, sorry.</p>
+        <p id="manual">For manual redirect, <a href="/Classy-Closet/main-pages/home/home.html">clicking here</a></p>
+        <p> If you believe there is a problem with the website or you need further assistance, please feel free to contact me at <a href="mailto:samuel.kinaitis@gmail.com">samuel.kinaitis@gmail.com</a>.</p>
+        <p>Thank you for visiting my website!</p>
+    </div>
+</body>
+<script>
+    //Time till redirect to main page (in seconds)
+    var timeTillRedirect = 10;
+
+    function UpdateTimerandRedirect() {
+    setTimeout(function() {
+        document.getElementById("time").innerText = "Redirecting back to the main page in " + timeTillRedirect;
+        timeTillRedirect--;
+        if (timeTillRedirect > -1) {
+            UpdateTimerandRedirect();
+        } else {
+            window.location.replace("/Classy-Closet/main-pages/home/home.html");
+            document.getElementById("time").innerHTML = `Automatic redirect broken, please use manual redirect below, sorry.`;
+        }
+    }, 1000)
+    }
+    UpdateTimerandRedirect();
+</script>
+</html>
