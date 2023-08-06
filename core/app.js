@@ -378,7 +378,7 @@ function footerBuilder(){
                 <a href="" id="footer__logo"></i>Classy Closet</a>
               </div>
               <div class="website__rights--wrap">
-                  <p class="website__rights">Designed and Owned by Samuel Kinaitis</p>
+              <a href="/Personal-Website/" target="_blank" class="website__credits"><p class="website__rights">Designed and Owned by Samuel Kinaitis</p></a>
                   <p id="website__copyright" class="website__rights">© Classy Closet 2023. All rights reserved</p>
                   <p class="website__rights">eCommerce mock-up for demonstration purposes only</p>
               </div>

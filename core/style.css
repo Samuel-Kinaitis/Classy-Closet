@@ -404,3 +404,6 @@ main{
       justify-content:start;
     }
   }  
+.website__credits{
+  text-decoration: none;
+}  
