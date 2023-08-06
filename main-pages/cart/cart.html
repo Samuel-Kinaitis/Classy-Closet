@@ -16,10 +16,152 @@
 
     <main>
 
+        <h1 class="SectionHeader">Cart</h1>
+
         <div id="cart--wrap--index">
 
         </div>
 
+
+        
+
+        <div class="checkout--wrap">
+            <h1 class="SectionHeader">Checkout</h1>
+            <form onsubmit="return false;" method="post" enctype="multipart/form-data">
+                <div class="checkoutInfo--content">
+        
+                    <h1>Shipping Info</h1>
+
+                    <div class="checkoutfeild--content">
+                <label for="FName">First Name:</label>
+                <br>
+                <input id="FName" placeholder="First Name" required>
+
+                <br>
+        
+                <label for="LName">Last Name:</label>
+                <br>
+                <input id="LName" placeholder="Last Name" required>
+
+                <br>
+        
+                <label for="Street Address">Street Address:</label>
+                <br>
+                <input id="Street Address" placeholder="Street Address" autocomplete="street-address" required>
+        
+                <br>
+
+                <label for="Address 2">Address Line 2 (Optional):</label>
+                <br>
+                <input id="Address 2" placeholder="Apt / Suite / Unit">
+        
+                <br>
+
+                <label for="City">City:</label>
+                <br>
+                <input id="City" placeholder="City" autocomplete="address-level2" required>
+
+                <br>
+
+                <label for="stateSelect">State:</label>
+                <br>
+                <select id="stateSelect" autocomplete="address-level1">
+                    <option value="" disabled selected>Select a state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+
+                <br>
+
+                <label for="Zip Code">Zip Code:</label>
+                <br>
+                <input id="Zip Code" placeholder="Zip Code" autocomplete="postal-code" required>
+
+
+                    </div>
+                </div>
+        
+                <div class="checkoutInfo--content">
+        
+                    <h1>Payment Info</h1>
+
+                    <div class="checkoutfeild--content">
+                        <label for="CCName">Cardholder Name</label>
+                        <input id="CCName" placeholder="Name" name="ccname" autocomplete="cc-name" required>
+                
+                        <label for="Card">Card Number</label>
+                        <input id="Card" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="1234 1234 1234 1234" required>
+                
+                        <label for="Expiry">Expiry</label>
+                        <input type="month" id="Expiry" autocomplete="cc-exp" required>
+                
+                        <label for="CVC">CVC</label>
+                        <input id="CVC" placeholder="CVC" autocomplete="cc-csc" maxlength="3" required>
+                    </div>        
+                </div>
+        
+                <div class="checkoutInfo--content">
+        
+                    <h1>Contact Info</h1>
+
+                    <div class="checkoutfeild--content">
+                        <label for="email">Email:</label>
+                <input type="email" placeholder="Email@gmail.com" id="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+        
+                <label for="phone">Phone #:</label>
+                <input type="tel" id="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                    </div>      
+                </div>
+            </form>
+        </div>
 
         <div id="Total">
             <h3 id="AllInTotalPrice">$</h3>

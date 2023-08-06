@@ -280,8 +280,6 @@ function cartStorageDefragmenting(){
       localShoppingCart[row] = localShoppingCart[row].concat(tempComuleCart);
       tempComuleCart = "";
 
-
-
 }
 
 
@@ -382,6 +380,7 @@ function footerBuilder(){
               <div class="website__rights--wrap">
                   <p class="website__rights">Designed and Owned by Samuel Kinaitis</p>
                   <p id="website__copyright" class="website__rights">© Classy Closet 2023. All rights reserved</p>
+                  <p class="website__rights">eCommerce mock-up for demonstration purposes only</p>
               </div>
             </div>
           </section>

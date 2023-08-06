@@ -1,7 +1,9 @@
 
 function endOfProductDisply(){
-    alert("This is the end of the website display");
+    
     console.log("Outbound request: " + shoppingCart);
+
+    alert("This is the end of the website display");
   }
   
 
@@ -11,71 +13,74 @@ function endOfProductDisply(){
   
     let totalCartPrice = 0;
     //build list
-    
-    for (let i = 1; i < localShoppingCart.length; i++) {
+
+
+    for (let index = 0; index < localShoppingCart.length; index++) {
+      for (let i = 1; i < StoredItems.length; i++) {
+        if (StoredItems[i][0] == localShoppingCart[index][0]) {         
         const shoppingItembox = document.createElement("div");
         shoppingItembox.classList = "Item__ContainerShoppingItembox"
-        shoppingItembox.id = "shoppingItembox"+i;
+        shoppingItembox.id = "shoppingItembox"+index;
       document.getElementById("cart--wrap--index").appendChild(shoppingItembox);
       //div
       const imageconterbuttonWrap = document.createElement("div");
       imageconterbuttonWrap.classList = "imageconterbuttonWrap"
-      imageconterbuttonWrap.id = "imageconterbuttonWrap"+i;
-      document.getElementById("shoppingItembox"+i).appendChild(imageconterbuttonWrap);
+      imageconterbuttonWrap.id = "imageconterbuttonWrap"+index;
+      document.getElementById("shoppingItembox"+index).appendChild(imageconterbuttonWrap);
         //div(X) only for phone
         const shoppingItemboxRemoveMobile = document.createElement("button");
         shoppingItemboxRemoveMobile.classList = "Item__ContainerShoppingItemboxRemoveMobile"
-        shoppingItemboxRemoveMobile.id = "shoppingItemboxRemoveMobile"+i;
+        shoppingItemboxRemoveMobile.id = "shoppingItemboxRemoveMobile"+index;
         shoppingItemboxRemoveMobile.innerText = "X"
-        shoppingItemboxRemoveMobile.onclick = function() {removeItemFromCart(localShoppingCart[i][0], localShoppingCart[i][1], localShoppingCart[i][2]);};
-            document.getElementById("imageconterbuttonWrap"+i).appendChild(shoppingItemboxRemoveMobile);
+        shoppingItemboxRemoveMobile.onclick = function() {removeItemFromCart(localShoppingCart[index][0], localShoppingCart[index][1], localShoppingCart[index][2]);};
+            document.getElementById("imageconterbuttonWrap"+index).appendChild(shoppingItemboxRemoveMobile);
         //img
         const img = document.createElement("img");
-        img.src = StoredItems[localShoppingCart[i][0]][4];
+        img.src = StoredItems[i][4];
         img.classList = "Item__imgShoppingItembox"
-        document.getElementById("imageconterbuttonWrap"+i).appendChild(img);
+        document.getElementById("imageconterbuttonWrap"+index).appendChild(img);
       //div
       const shoppingItemboxContent = document.createElement("div");
       shoppingItemboxContent.classList = "Item__ContainershoppingItemboxContent"
-      shoppingItemboxContent.id = "shoppingItemboxContent"+i;
-      document.getElementById("shoppingItembox"+i).appendChild(shoppingItemboxContent);
+      shoppingItemboxContent.id = "shoppingItemboxContent"+index;
+      document.getElementById("shoppingItembox"+index).appendChild(shoppingItemboxContent);
         //div
         const shoppingItemboxTitle = document.createElement("div");
         shoppingItemboxTitle.classList = "Item__ContainerShoppingItemboxTitle"
-        shoppingItemboxTitle.id = "shoppingItemboxTitle"+i;
-        document.getElementById("shoppingItemboxContent"+i).appendChild(shoppingItemboxTitle);
+        shoppingItemboxTitle.id = "shoppingItemboxTitle"+index;
+        document.getElementById("shoppingItemboxContent"+index).appendChild(shoppingItemboxTitle);
           //h2 (title)
           const shoppingItemboxMainTitle = document.createElement("h2");
           shoppingItemboxMainTitle.classList = "Item__ContainerShoppingItemboxMainTitle"
-          shoppingItemboxMainTitle.id = "shoppingItemboxMainTitle"+i;
-          shoppingItemboxMainTitle.innerText = StoredItems[localShoppingCart[i][0]][1]
-          document.getElementById("shoppingItemboxTitle"+i).appendChild(shoppingItemboxMainTitle);
+          shoppingItemboxMainTitle.id = "shoppingItemboxMainTitle"+index;
+          shoppingItemboxMainTitle.innerText = StoredItems[i][1];
+          document.getElementById("shoppingItemboxTitle"+index).appendChild(shoppingItemboxMainTitle);
           //div(X) only for pc
           const shoppingItemboxRemove = document.createElement("button");
           shoppingItemboxRemove.classList = "Item__ContainerShoppingItemboxRemovePC"
-          shoppingItemboxRemove.id = "shoppingItemboxRemove"+i;
+          shoppingItemboxRemove.id = "shoppingItemboxRemove"+index;
           shoppingItemboxRemove.innerText = "X"
-          shoppingItemboxRemove.onclick = function() {removeItemFromCart(localShoppingCart[i][0], localShoppingCart[i][1], localShoppingCart[i][2]);};
-          document.getElementById("shoppingItemboxTitle"+i).appendChild(shoppingItemboxRemove);
+          shoppingItemboxRemove.onclick = function() {removeItemFromCart(localShoppingCart[index][0], localShoppingCart[index][1], localShoppingCart[index][2]);};
+          document.getElementById("shoppingItemboxTitle"+index).appendChild(shoppingItemboxRemove);
         //div
         const shoppingItemboxInfo = document.createElement("div");
         shoppingItemboxInfo.classList = "Item__ContainerShoppingItemboxInfo"
-        shoppingItemboxInfo.id = "shoppingItemboxInfo"+i;
-        document.getElementById("shoppingItemboxContent"+i).appendChild(shoppingItemboxInfo);
+        shoppingItemboxInfo.id = "shoppingItemboxInfo"+index;
+        document.getElementById("shoppingItemboxContent"+index).appendChild(shoppingItemboxInfo);
           //h3 (#)
           const shoppingItemboxAmount = document.createElement("h3");
           shoppingItemboxAmount.classList = "Item__ContainerShoppingItemboxAmount"
-          shoppingItemboxAmount.id = "shoppingItemboxAmount"+i;
-          shoppingItemboxAmount.innerText = "Quantity:"+ localShoppingCart[i][1];
-          document.getElementById("shoppingItemboxInfo"+i).appendChild(shoppingItemboxAmount);
+          shoppingItemboxAmount.id = "shoppingItemboxAmount"+index;
+          shoppingItemboxAmount.innerText = "Quantity:"+ localShoppingCart[index][1];
+          document.getElementById("shoppingItemboxInfo"+index).appendChild(shoppingItemboxAmount);
           //h3 ($)
           const shoppingItemboxCost = document.createElement("h3");
           shoppingItemboxCost.classList = "Item__ContainerShoppingItemboxCost"
-          shoppingItemboxCost.id = "shoppingItemboxCost"+i;
+          shoppingItemboxCost.id = "shoppingItemboxCost"+index;
   
           
-          ItemAmount =  localShoppingCart[i][1]
-          item_value =  localShoppingCart[i][0]
+          ItemAmount =  localShoppingCart[index][1]
+          item_value =  localShoppingCart[index][0]
           shoppingItemboxCost.innerText =("Price $" + totalItemPrice());
   
           totalCartPrice = ((Math.round((parseFloat(totalItemPrice() + parseFloat(totalCartPrice))) * 100) / 100));
@@ -86,20 +91,27 @@ function endOfProductDisply(){
               totalCartPrice = totalCartPrice.toString().concat(".00");
             }
           }
-          document.getElementById("shoppingItemboxInfo"+i).appendChild(shoppingItemboxCost);
+          document.getElementById("shoppingItemboxInfo"+index).appendChild(shoppingItemboxCost);
   
           //h3 (size)
           const shoppingItemboxSize = document.createElement("h3");
           shoppingItemboxSize.classList = "Item__ContainerShoppingItemboxSize"
-          shoppingItemboxSize.id = "shoppingItemboxSize"+i;
-          shoppingItemboxSize.innerText = "Size:" + localShoppingCart[i][2];
-          document.getElementById("shoppingItemboxInfo"+i).appendChild(shoppingItemboxSize);
-          if (localShoppingCart[i][2] == "empty"){
-            document.getElementById("shoppingItemboxSize"+i).style.display='none';
+          shoppingItemboxSize.id = "shoppingItemboxSize"+index;
+          shoppingItemboxSize.innerText = "Size:" + localShoppingCart[index][2];
+          document.getElementById("shoppingItemboxInfo"+index).appendChild(shoppingItemboxSize);
+          if (localShoppingCart[index][2] == "empty"){
+            document.getElementById("shoppingItemboxSize"+index).style.display='none';
           }
           
           document.getElementById("CheckoutButton").disabled = false;
           document.getElementById("AllInTotalPrice").innerHTML = "Total $" + totalCartPrice;
+          break;
+        } else if(StoredItems.length == i+1 && index > 0){
+          removeItemFromCart(localShoppingCart[index][0],localShoppingCart[index][1],localShoppingCart[index][2])
+        }
+      }
+    }
+    for (let i = 1; i < StoredItems.length; i++) {
     }
     if (totalCartPrice == 0){
       document.getElementById("AllInTotalPrice").innerHTML = "No Items in Cart";
