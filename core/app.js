@@ -375,7 +375,7 @@ function footerBuilder(){
           <section class="social__media">
             <div class="social__media--wrap">
               <div class="footer__logo">
-                <a href="" id="footer__logo"></i>Classy Closet</a>
+                <a href="/Classy-Closet/main-pages/home/home.html" id="footer__logo"></i>Classy Closet</a>
               </div>
               <div class="website__rights--wrap">
               <a href="/home/" target="_blank" class="website__credits"><p class="website__rights">Designed and Owned by Samuel Kinaitis</p></a>
